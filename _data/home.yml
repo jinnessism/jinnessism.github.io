@@ -1,0 +1,16 @@
+about_me: >-
+  I am Jeongmin Park, an M.S. student at SILAB KAIST. My research interests include machine learning and AI systems. I am passionate about exploring the latest advancements in AI and applying them to solve real-world problems. I am currently working on several projects related to generative model alignment and multi-modal AI. In my free time, I enjoy reading research papers, coding, and sharing my knowledge through this blog.
+
+publication_note: >-
+  Publication notes are short posts where I explain each paper in plain language,
+  including motivation, key idea, and takeaways.
+
+education:
+  - degree: "M.S. in <a href='https://gsds.kaist.ac.kr/'>Data Science</a>"
+    institution: "KAIST"
+    period: "2026 - Present"
+    details: "Research focus: Generative Model Alignment(especially Diffusion), Reinforcement Learning, Retrieval-Augmented Multi-modal Generation."
+  - degree: "B.S. in <a href='https://cs.kaist.ac.kr/'>Computer Science</a>, Double Major in <a href='https://mathsci.kaist.ac.kr/'>Mathematics</a> and <a href='https://ie.kaist.ac.kr/'>Industrial Engineering</a>"
+    institution: "KAIST"
+    period: "2019 - 2026"
+    details: "Undergraduate studies in computer science with a focus on AI and data science."

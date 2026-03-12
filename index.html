@@ -1,4 +1,84 @@
 ---
 layout: home
-# Index page
+title: Home
+show_post_list: false
 ---
+{% assign home = site.data.home %}
+{% assign publications = site.publications | sort: 'date' | reverse %}
+{% assign news_posts = site.posts | where_exp: 'item', 'item.hidden != true' %}
+
+<section id="about-me" class="mb-5">
+  <h2>About Me</h2>
+  <p>{{ home.about_me }}</p>
+</section>
+
+<section id="news" class="mb-5">
+  <h2>News</h2>
+
+  {% if publications.size > 0 %}
+    <h3>Research Updates</h3>
+    <ul>
+      {% for pub in publications limit: 3 %}
+        <li>
+          <a href="{{ pub.url | relative_url }}">{{ pub.title }}</a>
+          <span class="text-muted">({{ pub.date | date: '%Y-%m-%d' }})</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <h3>General Updates</h3>
+  {% if news_posts.size > 0 %}
+    <ul>
+      {% for post in news_posts limit: 5 %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="text-muted">({{ post.date | date: '%Y-%m-%d' }})</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No general updates yet. Add your first post in `_posts/`.</p>
+  {% endif %}
+</section>
+
+<section id="education" class="mb-5">
+  <h2>Education</h2>
+  {% if home.education and home.education.size > 0 %}
+    <ul>
+      {% for edu in home.education %}
+        <li>
+          <strong>{{ edu.degree }}</strong>, {{ edu.institution }} ({{ edu.period }})
+          {% if edu.details %}
+            <br>
+            {{ edu.details }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+<section id="publication" class="mb-1">
+  <h2>Publication</h2>
+  <p>{{ home.publication_note }}</p>
+
+  {% if publications.size > 0 %}
+    <ul>
+      {% for pub in publications limit: 5 %}
+        <li>
+          <a href="{{ pub.url | relative_url }}">{{ pub.title }}</a>
+          <span class="text-muted">({{ pub.date | date: '%Y-%m-%d' }})</span>
+          {% if pub.excerpt %}
+            <br>
+            {{ pub.excerpt | strip_html | truncate: 140 }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No publication posts yet. Add one in `_publications/`.</p>
+  {% endif %}
+
+  <p><a href="{{ '/publications/' | relative_url }}">See all publications</a></p>
+</section>

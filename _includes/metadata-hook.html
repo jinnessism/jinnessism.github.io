@@ -1,0 +1,130 @@
+<style>
+  #sidebar .sidebar-bottom #mode-toggle {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-right: 0.8rem;
+  }
+
+  @media all and (min-width: 1650px) {
+    #sidebar .sidebar-bottom #mode-toggle {
+      margin-right: 1rem;
+    }
+  }
+
+  #sidebar .sidebar-bottom #mode-toggle i {
+    display: none;
+  }
+
+  #sidebar .sidebar-bottom #mode-toggle .mode-toggle-label {
+    display: block;
+    transform: translateY(0.01rem);
+  }
+</style>
+
+<script>
+  (function () {
+    var MODE_KEY = 'mode';
+    var MODE_ATTR = 'data-mode';
+    var DARK = 'dark';
+    var LIGHT = 'light';
+
+    function prefersDark() {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function getActiveMode() {
+      var stored = sessionStorage.getItem(MODE_KEY);
+      if (stored === DARK || stored === LIGHT) {
+        return stored;
+      }
+
+      var attr = document.documentElement.getAttribute(MODE_ATTR);
+      if (attr === DARK || attr === LIGHT) {
+        return attr;
+      }
+
+      return prefersDark() ? DARK : LIGHT;
+    }
+
+    function applyMode(mode) {
+      document.documentElement.setAttribute(MODE_ATTR, mode);
+      sessionStorage.setItem(MODE_KEY, mode);
+      window.postMessage({ id: 'theme-mode' }, '*');
+    }
+
+    function updateButtonLabel(button, mode) {
+      var label = button.querySelector('.mode-toggle-label');
+
+      if (!label) {
+        label = document.createElement('span');
+        label.className = 'mode-toggle-label';
+        button.textContent = '';
+        button.appendChild(label);
+      }
+
+      label.textContent = mode === DARK ? 'D' : 'L';
+
+      var nextMode = mode === DARK ? LIGHT : DARK;
+      button.setAttribute('title', 'Switch to ' + nextMode + ' mode');
+      button.setAttribute('aria-label', 'Switch to ' + nextMode + ' mode');
+    }
+
+    function ensureToggleButton() {
+      var button = document.getElementById('mode-toggle');
+      if (button) {
+        return button;
+      }
+
+      var bottom = document.querySelector('#sidebar .sidebar-bottom');
+      if (!bottom) {
+        return null;
+      }
+
+      button = document.createElement('button');
+      button.id = 'mode-toggle';
+      button.type = 'button';
+      bottom.insertBefore(button, bottom.firstChild);
+
+      return button;
+    }
+
+    function bindToggleHandler(button) {
+      if (button.dataset.manualThemeToggleBound === 'true') {
+        return;
+      }
+
+      button.dataset.manualThemeToggleBound = 'true';
+
+      button.addEventListener(
+        'click',
+        function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          var nextMode = getActiveMode() === DARK ? LIGHT : DARK;
+          applyMode(nextMode);
+          updateButtonLabel(button, nextMode);
+        },
+        true
+      );
+    }
+
+    function initManualModeToggle() {
+      var button = ensureToggleButton();
+      if (!button) {
+        return;
+      }
+
+      bindToggleHandler(button);
+      updateButtonLabel(button, getActiveMode());
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initManualModeToggle);
+    } else {
+      initManualModeToggle();
+    }
+  })();
+</script>

@@ -28,9 +28,6 @@ url: "https://jinnessism.github.io"
 github:
   username: jinnessism # change to your GitHub username
 
-twitter:
-  username: jinnessism # change to your Twitter username
-
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
@@ -38,8 +35,8 @@ social:
   email: pjmin831@kaist.ac.kr # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/jinnessism # change to your Twitter homepage
     - https://github.com/jinnessism # change to your GitHub homepage
+    - https://www.linkedin.com/in/jinnessism # change to your LinkedIn homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -89,7 +86,6 @@ pageviews:
 #     dark — Use the dark color scheme
 #
 theme_mode: # [light | dark]
-  light
 
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
@@ -171,6 +167,9 @@ collections:
   tabs:
     output: true
     sort_by: order
+  publications:
+    output: true
+    permalink: /publications/:title/
 
 defaults:
   - scope:
@@ -187,6 +186,13 @@ defaults:
       path: _drafts
     values:
       comments: false
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: post
+      comments: true
+      toc: false
   - scope:
       path: ""
       type: tabs # see `site.collections`
