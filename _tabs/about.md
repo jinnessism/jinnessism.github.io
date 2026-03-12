@@ -4,6 +4,6 @@ icon: fas fa-info-circle
 order: 1
 ---
 
-I am Jeongmin Park, an M.S. student at KAIST working on [SILAB](http://silab.kaist.ac.kr)
+I am Jeongmin Park, an M.S. student at KAIST working on SILAB KAIST.
 
 
