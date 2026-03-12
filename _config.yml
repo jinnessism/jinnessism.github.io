@@ -16,10 +16,10 @@ timezone: Asia/Seoul
 
 title: Jeongmin Park # the main title
 
-tagline: M.S student at KAIST # it will display as the subtitle
+tagline: # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  jinnessism.github.io is the personal website of Jeongmin Park, a M.S student at KAIST. It is built with Jekyll and the Chirpy theme.
+  jinnessism.github.io is the personal website of Jeongmin Park, a M.S. student at KAIST. It is built with Jekyll and the Chirpy theme.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.

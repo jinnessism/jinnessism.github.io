@@ -1,6 +1,6 @@
 ---
 title: Posts
-icon: fas fa-newspaper
+icon: fas fa-microblog
 order: 3
 ---
 
