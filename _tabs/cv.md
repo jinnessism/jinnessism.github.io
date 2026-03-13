@@ -4,7 +4,7 @@ icon: fas fa-file-lines
 order: 4
 ---
 
-Upload your CV PDF to `assets/files/cv.pdf` and it will be shown here.
+This is my CV, updated last in Oct. 12nd, 2025.
 
 [Download CV]({{ '/assets/files/cv.pdf' | relative_url }})
 
