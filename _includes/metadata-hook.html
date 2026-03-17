@@ -6,6 +6,28 @@
 <style>
   :root {
     --site-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    --site-accent: #1f3f8f;
+    --site-accent-strong: #1a3579;
+    --site-link-hover: #365ca8;
+    --site-accent-soft: #eff4ff;
+    --bs-link-color: #1f3f8f;
+    --bs-link-hover-color: #365ca8;
+  }
+
+  /* Override Chirpy's html[data-mode=light] vars (specificity 0-1-1) */
+  html:not([data-mode]),
+  html[data-mode='light'] {
+    --link-color: #1f3f8f;
+    --link-underline-color: #d2def7;
+    --btn-border-color: #888888;
+    --btn-backtotop-border-color: #6f8ccf;
+    --btn-backtotop-color: #1f3f8f;
+    --btn-share-color: #1f3f8f;
+    --btn-share-hover-color: #365ca8;
+    --tag-border: #c0d1f3;
+    --tag-hover: #dbe5fb;
+    --search-tag-bg: #eff4ff;
+    --toc-highlight: #1f3f8f;
   }
 
   body,
@@ -33,12 +55,97 @@
     font-family: var(--site-font-sans) !important;
   }
 
+  a {
+    color: var(--link-color);
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--site-link-hover);
+  }
+
+  /* Override Chirpy's hardcoded #d2603a orange hover with !important */
+  #page-category a:hover,
+  #page-tag a:hover,
+  #access-lastmod a:hover,
+  .post-tail-wrapper .license-wrapper > a:hover,
+  #search-results a:hover,
+  footer a:hover,
+  #topbar #breadcrumb a:hover,
+  .post-meta a:not([class]):hover,
+  .content a:not(.img-link):hover {
+    color: var(--site-link-hover) !important;
+    border-bottom-color: var(--site-link-hover) !important;
+  }
+
+  .btn-outline-primary {
+    --bs-btn-color: #ccc;
+    --bs-btn-border-color: #ccc;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #1f3f8f;
+    --bs-btn-hover-border-color: #1f3f8f;
+    --bs-btn-focus-shadow-rgb: 31, 63, 143;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #1a3579;
+    --bs-btn-active-border-color: #1a3579;
+    --bs-btn-disabled-color: #ccc;
+    --bs-btn-disabled-border-color: #e0e0e0;
+  }
+
+  .btn-primary {
+    --bs-btn-bg: #1f3f8f;
+    --bs-btn-border-color: #1f3f8f;
+    --bs-btn-hover-bg: #365ca8;
+    --bs-btn-hover-border-color: #365ca8;
+    --bs-btn-focus-shadow-rgb: 31, 63, 143;
+    --bs-btn-active-bg: #1a3579;
+    --bs-btn-active-border-color: #1a3579;
+  }
+
+  html.is-tab-route main article .content p,
+  html.is-tab-route main article .content li,
+  html.is-tab-route main article .content blockquote,
+  html.is-tab-route main article .content table,
+  html.is-tab-route main article .content dt,
+  html.is-tab-route main article .content dd,
+  html.is-tab-route #tags .tag,
+  html.is-tab-route main section p,
+  html.is-tab-route main section li,
+  html.is-tab-route main section dt,
+  html.is-tab-route main section dd {
+    font-size: 0.84rem;
+  }
+
   #home-sections h2 {
     font-weight: 700;
   }
 
   #home-sections h3 {
     font-weight: 500;
+  }
+
+  .about-notion-embed {
+    margin-top: 0.75rem;
+    border: 1px solid var(--main-border-color);
+    border-radius: 0.95rem;
+    overflow: hidden;
+    background: var(--card-bg, var(--main-bg));
+    box-shadow: var(--card-shadow);
+  }
+
+  .about-notion-embed iframe {
+    display: block;
+    width: 100%;
+    height: 76vh;
+    min-height: 640px;
+    border: 0;
+  }
+
+  @media all and (max-width: 849px) {
+    .about-notion-embed iframe {
+      height: 68vh;
+      min-height: 520px;
+    }
   }
 
   article .dynamic-title {
@@ -73,6 +180,457 @@
     display: block;
     transform: translateY(0.01rem);
   }
+
+  html[data-mode='dark'] {
+    --link-color: #b8ccff;
+    --site-link-hover: #d2e0ff;
+    --link-underline-color: #3b579c;
+    --btn-border-color: #8ca4d6;
+    --btn-backtotop-border-color: #7e96cf;
+    --btn-backtotop-color: #d8e4ff;
+    --btn-share-color: #b8ccff;
+    --btn-share-hover-color: #dbe7ff;
+    --tag-border: #35508f;
+    --tag-hover: #2f4b86;
+    --search-tag-bg: rgba(49, 86, 168, 0.2);
+    --toc-highlight: #b8ccff;
+
+    --bs-link-color: #b8ccff;
+    --bs-link-hover-color: #d2e0ff;
+  }
+
+  .archive-board {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .archive-card {
+    background: var(--card-bg, var(--main-bg));
+    border: 1px solid #d0dcf5;
+    border-radius: 0.95rem;
+    padding: 1rem 1.1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .archive-card:hover {
+    border-color: #6f8ccf;
+    box-shadow: 0 9px 18px rgba(31, 63, 143, 0.16);
+    transform: translateY(-1px);
+  }
+
+  .archive-card-title {
+    margin: 0;
+    font-size: 1.06rem;
+    line-height: 1.35;
+  }
+
+  .archive-card-title a {
+    color: #1f3f8f;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  .archive-card-title a:hover,
+  .archive-card-title a:focus-visible {
+    color: var(--site-link-hover);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.14em;
+  }
+
+  .archive-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.6rem;
+  }
+
+  .archive-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.6rem;
+    border-radius: 999px;
+    border: 1px solid #c0d1f3;
+    padding: 0.16rem 0.56rem;
+    font-size: 0.76rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+  }
+
+  .archive-chip-type {
+    color: #1f3f8f;
+    background: #ecf2ff;
+    border-color: #b7c9f1;
+  }
+
+  .archive-chip-venue {
+    max-width: 100%;
+    min-width: 0;
+    color: #365ca8;
+    background: #f6f9ff;
+    border-color: #d2def7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .archive-card-meta {
+    margin: 0.55rem 0 0.35rem;
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+  }
+
+  .archive-card-label {
+    font-weight: 600;
+    margin-right: 0.42rem;
+  }
+
+  .archive-card-summary {
+    margin: 0;
+    color: var(--text-color);
+  }
+
+  #page-tag ul.content {
+    display: grid;
+    gap: 0.85rem;
+    padding-left: 0;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  #page-tag > h1 + ul.content,
+  #page-tag > h1 + .tag-group {
+    margin-top: 1.8rem;
+  }
+
+  #page-tag .tag-group + .tag-group {
+    margin-top: 1.15rem;
+  }
+
+  #page-tag .tag-group-title {
+    margin: 0 0 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted-color);
+  }
+
+  #page-tag ul.content > li {
+    list-style: none;
+    margin: 0;
+    border: 1px solid #d0dcf5;
+    border-radius: 0.95rem;
+    background: var(--card-bg, var(--main-bg));
+    padding: 1.05rem 1.15rem !important;
+    display: block !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  #page-tag ul.content > li:hover {
+    border-color: #6f8ccf;
+    box-shadow: 0 9px 18px rgba(31, 63, 143, 0.16);
+    transform: translateY(-1px);
+  }
+
+  #page-tag ul.content > li > a {
+    display: block;
+    color: #1f3f8f;
+    font-size: 1.02rem;
+    font-weight: 650;
+    line-height: 1.4;
+    text-decoration: none;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #page-tag ul.content > li > a:hover,
+  #page-tag ul.content > li > a:focus-visible {
+    color: var(--site-link-hover);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.14em;
+  }
+
+  #page-tag ul.content > li > a,
+  #page-tag ul.content > li > a:hover,
+  #page-tag ul.content > li > a:focus-visible {
+    border-bottom: none !important;
+  }
+
+  #page-tag ul.content > li > .dash {
+    display: none;
+  }
+
+  #page-tag ul.content > li > time {
+    color: var(--text-muted-color) !important;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .compact-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.75rem;
+    margin-top: 0.55rem;
+  }
+
+  .compact-meta-date,
+  .compact-meta-venue {
+    color: var(--text-muted-color);
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .compact-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .compact-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #c0d1f3;
+    border-radius: 999px;
+    background: #ecf2ff;
+    color: #1f3f8f;
+    padding: 0.12rem 0.5rem;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  #search-results > article {
+    border: 1px solid #d0dcf5;
+    border-radius: 0.95rem;
+    background: var(--card-bg, var(--main-bg));
+    padding: 1.05rem 1.15rem !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 9.5rem;
+    align-self: stretch;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  #search-results > article:nth-child(odd),
+  #search-results > article:nth-child(even),
+  #search-results > article:last-child:nth-child(odd) {
+    margin: 0 !important;
+    right: auto !important;
+  }
+
+  #search-results {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    align-items: stretch;
+  }
+
+  #search-results .results-group-title {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0.1rem 0.15rem 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted-color);
+  }
+
+  #search-results > article > header {
+    display: grid;
+    grid-template-rows: 2.95rem 1.85rem;
+    row-gap: 0.6rem;
+    flex: 1 1 auto;
+  }
+
+  #search-results > article:hover {
+    border-color: #6f8ccf;
+    box-shadow: 0 9px 18px rgba(31, 63, 143, 0.16);
+    transform: translateY(-1px);
+  }
+
+  #search-results > article h2 {
+    margin: 0;
+    line-height: 1.35;
+    height: 2.95rem;
+  }
+
+  #search-results > article h2 a {
+    color: #1f3f8f;
+    font-size: 1.02rem;
+    font-weight: 650;
+    line-height: 1.4;
+    text-decoration: none;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  #search-results > article h2 a:hover,
+  #search-results > article h2 a:focus-visible {
+    color: var(--site-link-hover);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.14em;
+  }
+
+  #search-results > article h2 a,
+  #search-results > article h2 a:hover,
+  #search-results > article h2 a:focus-visible {
+    border-bottom: none !important;
+  }
+
+  #search-results > article .post-meta {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    min-height: 1.85rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-muted-color) !important;
+  }
+
+  #search-results > article .compact-meta-row {
+    margin-top: 0;
+    width: 100%;
+    min-height: 1.85rem;
+    align-items: center;
+  }
+
+  #search-results > article .compact-meta-tags {
+    flex-wrap: nowrap;
+    overflow: hidden;
+    max-width: 65%;
+  }
+
+  #search-results > article .compact-meta-tag {
+    white-space: nowrap;
+  }
+
+  #search-results > article.search-result-compact > p {
+    display: none;
+  }
+
+  #search-results > article > p {
+    margin-top: 0.45rem;
+    margin-bottom: 0;
+    color: var(--text-color);
+  }
+
+  @media all and (min-width: 992px) {
+    #search-results {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  @media all and (max-width: 576px) {
+    #page-tag ul.content > li {
+      padding: 0.95rem 0.95rem !important;
+    }
+
+    #search-results > article {
+      padding: 0.95rem 0.95rem !important;
+      min-height: 0;
+    }
+
+    #search-results > article > header {
+      grid-template-rows: auto auto;
+      row-gap: 0.45rem;
+    }
+
+    #search-results > article h2 {
+      height: auto;
+    }
+
+    #search-results > article .post-meta,
+    #search-results > article .compact-meta-row {
+      min-height: 0;
+    }
+
+    .compact-meta-row {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+  }
+
+  html[data-mode='dark'] .archive-card {
+    border-color: #395893;
+    background: rgba(20, 33, 61, 0.84);
+  }
+
+  html[data-mode='dark'] .archive-card:hover {
+    border-color: #8facdf;
+    box-shadow: 0 10px 24px rgba(73, 104, 177, 0.3);
+  }
+
+  html[data-mode='dark'] .archive-card-title a {
+    color: #b8ccff;
+  }
+
+  html[data-mode='dark'] .archive-card-title a:hover,
+  html[data-mode='dark'] .archive-card-title a:focus-visible {
+    color: var(--site-link-hover);
+  }
+
+  html[data-mode='dark'] .archive-chip-type {
+    color: #e8f0ff;
+    background: rgba(44, 72, 142, 0.35);
+    border-color: #7696d3;
+  }
+
+  html[data-mode='dark'] .archive-chip-venue {
+    color: #dbe7ff;
+    background: rgba(58, 87, 160, 0.2);
+    border-color: #8ea8dd;
+  }
+
+  html[data-mode='dark'] #page-tag ul.content > li {
+    border-color: #395893;
+    background: rgba(20, 33, 61, 0.84);
+  }
+
+  html[data-mode='dark'] #page-tag ul.content > li:hover {
+    border-color: #8facdf;
+    box-shadow: 0 10px 24px rgba(73, 104, 177, 0.3);
+  }
+
+  html[data-mode='dark'] #page-tag ul.content > li > a {
+    color: #b8ccff;
+  }
+
+  html[data-mode='dark'] #search-results > article {
+    border-color: #395893;
+    background: rgba(20, 33, 61, 0.84);
+  }
+
+  html[data-mode='dark'] #search-results > article:hover {
+    border-color: #8facdf;
+    box-shadow: 0 10px 24px rgba(73, 104, 177, 0.3);
+  }
+
+  html[data-mode='dark'] #search-results > article h2 a {
+    color: #b8ccff;
+  }
+
+  html[data-mode='dark'] .compact-meta-tag {
+    color: #e8f0ff;
+    background: rgba(44, 72, 142, 0.35);
+    border-color: #7696d3;
+  }
 </style>
 
 <script>
@@ -81,6 +639,32 @@
     var MODE_ATTR = 'data-mode';
     var DARK = 'dark';
     var LIGHT = 'light';
+    var CONTENT_META_LOOKUP = {};
+    var PUBLICATION_INDEX = [];
+
+    {% for post in site.posts %}
+    CONTENT_META_LOOKUP[{{ post.url | relative_url | jsonify }}] = {
+      kind: 'post',
+      date: {{ post.date | date: "%b %-d, %Y" | jsonify }},
+      tags: {{ post.tags | jsonify }}
+    };
+    {% endfor %}
+
+    {% for pub in site.publications %}
+    CONTENT_META_LOOKUP[{{ pub.url | relative_url | jsonify }}] = {
+      kind: 'publication',
+      venue: {{ pub.venue_short | default: pub.venue | default: "Venue TBD" | jsonify }}
+    };
+
+    PUBLICATION_INDEX.push({
+      url: {{ pub.url | relative_url | jsonify }},
+      title: {{ pub.title | jsonify }},
+      venue: {{ pub.venue_short | default: pub.venue | default: "Venue TBD" | jsonify }},
+      tags: {{ pub.tags | jsonify }},
+      excerpt: {{ pub.excerpt | default: "" | strip_html | jsonify }},
+      ts: {{ pub.date | date: "%s" | plus: 0 }}
+    });
+    {% endfor %}
 
     function prefersDark() {
       return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -163,7 +747,537 @@
       );
     }
 
+    function normalizedPath(pathname) {
+      var path = pathname || '/';
+      path = path.replace(/\/+/g, '/');
+
+      if (path.length > 1 && path.charAt(path.length - 1) !== '/') {
+        path += '/';
+      }
+
+      return path;
+    }
+
+    function normalizeTagSlug(value) {
+      return (value || '').toString().trim().toLowerCase();
+    }
+
+    function getTagSlugFromHref(href) {
+      if (!href) {
+        return '';
+      }
+
+      var pathOnly = href.replace(/^https?:\/\/[^/]+/i, '');
+      var normalized = normalizedPath(pathOnly);
+      var baseUrl = '{{ site.baseurl }}' || '';
+
+      if (baseUrl && baseUrl !== '/' && normalized.indexOf(baseUrl) === 0) {
+        normalized = normalizedPath(normalized.slice(baseUrl.length) || '/');
+      }
+
+      var matches = normalized.match(/^\/tags\/([^/]+)\/$/);
+      if (!matches || !matches[1]) {
+        return '';
+      }
+
+      return decodeURIComponent(matches[1]).toLowerCase();
+    }
+
+    function resolveContentMeta(url) {
+      if (!url) {
+        return null;
+      }
+
+      var href = url.replace(/^https?:\/\/[^/]+/i, '');
+      var normalized = normalizedPath(href);
+      var candidates = [href, normalized];
+      var baseUrl = '{{ site.baseurl }}' || '';
+
+      if (normalized.length > 1 && normalized.charAt(normalized.length - 1) === '/') {
+        candidates.push(normalized.slice(0, -1));
+      }
+
+      if (baseUrl && baseUrl !== '/' && normalized.indexOf(baseUrl) === 0) {
+        var stripped = normalizedPath(normalized.slice(baseUrl.length) || '/');
+        candidates.push(stripped);
+
+        if (stripped.length > 1 && stripped.charAt(stripped.length - 1) === '/') {
+          candidates.push(stripped.slice(0, -1));
+        }
+      }
+
+      for (var i = 0; i < candidates.length; i += 1) {
+        var key = candidates[i];
+        if (CONTENT_META_LOOKUP[key]) {
+          return CONTENT_META_LOOKUP[key];
+        }
+      }
+
+      return null;
+    }
+
+    function getPathWithoutBase() {
+      var baseUrl = '{{ site.baseurl }}' || '';
+      var path = window.location.pathname || '/';
+
+      if (baseUrl && baseUrl !== '/' && path.indexOf(baseUrl) === 0) {
+        path = path.slice(baseUrl.length) || '/';
+      }
+
+      return normalizedPath(path);
+    }
+
+    function getCurrentTagSlug() {
+      var path = getPathWithoutBase();
+      var matches = path.match(/^\/tags\/([^/]+)\/$/);
+
+      if (!matches || !matches[1]) {
+        return '';
+      }
+
+      return decodeURIComponent(matches[1]).toLowerCase();
+    }
+
+    function syncTagIndexCounts() {
+      var tagsContainer = document.getElementById('tags');
+
+      if (!tagsContainer || tagsContainer.dataset.countSynced === 'true') {
+        return;
+      }
+
+      var publicationTagCounts = {};
+
+      PUBLICATION_INDEX.forEach(function (item) {
+        if (!Array.isArray(item.tags)) {
+          return;
+        }
+
+        item.tags.forEach(function (tag) {
+          var slug = normalizeTagSlug(tag);
+          if (!slug) {
+            return;
+          }
+
+          publicationTagCounts[slug] = (publicationTagCounts[slug] || 0) + 1;
+        });
+      });
+
+      Array.prototype.slice.call(tagsContainer.querySelectorAll('a.tag[href]')).forEach(function (link) {
+        var slug = getTagSlugFromHref(link.getAttribute('href'));
+        if (!slug) {
+          return;
+        }
+
+        var countNode = link.querySelector('span.text-muted');
+        if (!countNode) {
+          return;
+        }
+
+        var baseCount = parseInt((countNode.textContent || '').trim(), 10);
+        if (Number.isNaN(baseCount)) {
+          return;
+        }
+
+        var publicationCount = publicationTagCounts[slug] || 0;
+        countNode.textContent = String(baseCount + publicationCount);
+      });
+
+      tagsContainer.dataset.countSynced = 'true';
+    }
+
+    function getPublicationsForTag(tagSlug) {
+      if (!tagSlug) {
+        return [];
+      }
+
+      return PUBLICATION_INDEX.filter(function (item) {
+        if (!Array.isArray(item.tags)) {
+          return false;
+        }
+
+        return item.tags.some(function (tag) {
+          return (tag || '').toString().toLowerCase() === tagSlug;
+        });
+      }).sort(function (a, b) {
+        return (b.ts || 0) - (a.ts || 0);
+      });
+    }
+
+    function createTagPublicationItem(item) {
+      var li = document.createElement('li');
+      li.className = 'd-flex justify-content-between px-md-3';
+
+      var link = document.createElement('a');
+      link.href = item.url;
+      link.textContent = item.title;
+
+      li.appendChild(link);
+      return li;
+    }
+
+    function splitTagResultsAndInjectPublications() {
+      var pageTag = document.getElementById('page-tag');
+
+      if (!pageTag || pageTag.dataset.typeSeparated === 'true') {
+        return;
+      }
+
+      var postList = pageTag.querySelector(':scope > ul.content');
+      if (!postList) {
+        return;
+      }
+
+      var tagSlug = getCurrentTagSlug();
+      if (!tagSlug) {
+        return;
+      }
+
+      var postItems = Array.prototype.slice.call(postList.children);
+      var publications = getPublicationsForTag(tagSlug);
+
+      if (publications.length === 0) {
+        pageTag.dataset.typeSeparated = 'true';
+        return;
+      }
+
+      var fragment = document.createDocumentFragment();
+
+      if (postItems.length > 0) {
+        var postSection = document.createElement('section');
+        postSection.className = 'tag-group tag-group-posts';
+
+        var postTitle = document.createElement('h3');
+        postTitle.className = 'tag-group-title ps-lg-2';
+        postTitle.textContent = 'Posts';
+
+        postSection.appendChild(postTitle);
+        postSection.appendChild(postList);
+        fragment.appendChild(postSection);
+      } else {
+        postList.remove();
+      }
+
+      var pubSection = document.createElement('section');
+      pubSection.className = 'tag-group tag-group-publications';
+
+      var pubTitle = document.createElement('h3');
+      pubTitle.className = 'tag-group-title ps-lg-2';
+      pubTitle.textContent = 'Publications';
+
+      var pubList = document.createElement('ul');
+      pubList.className = 'content ps-0';
+
+      publications.forEach(function (item) {
+        pubList.appendChild(createTagPublicationItem(item));
+      });
+
+      pubSection.appendChild(pubTitle);
+      pubSection.appendChild(pubList);
+      fragment.appendChild(pubSection);
+
+      pageTag.appendChild(fragment);
+
+      var countNode = pageTag.querySelector('h1 .lead');
+      if (countNode) {
+        countNode.textContent = String(postItems.length + publications.length);
+      }
+
+      pageTag.dataset.typeSeparated = 'true';
+    }
+
+    function getSearchTokens(rawQuery) {
+      return (rawQuery || '')
+        .toLowerCase()
+        .trim()
+        .split(/\s+/)
+        .filter(function (token) {
+          return token.length > 0;
+        });
+    }
+
+    function findPublicationsByQuery(rawQuery) {
+      var tokens = getSearchTokens(rawQuery);
+
+      if (tokens.length === 0) {
+        return [];
+      }
+
+      return PUBLICATION_INDEX.filter(function (item) {
+        var tags = Array.isArray(item.tags) ? item.tags.join(' ') : '';
+        var haystack = [item.title, item.venue, tags, item.excerpt].join(' ').toLowerCase();
+
+        return tokens.every(function (token) {
+          return haystack.indexOf(token) !== -1;
+        });
+      }).sort(function (a, b) {
+        return (b.ts || 0) - (a.ts || 0);
+      });
+    }
+
+    function createSearchPublicationArticle(item) {
+      var article = document.createElement('article');
+      article.className = 'search-publication-item px-1 px-sm-2 px-lg-4 px-xl-0';
+
+      var header = document.createElement('header');
+      var title = document.createElement('h2');
+      var link = document.createElement('a');
+      link.href = item.url;
+      link.textContent = item.title;
+
+      var meta = document.createElement('div');
+      meta.className = 'post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1';
+
+      title.appendChild(link);
+      header.appendChild(title);
+      header.appendChild(meta);
+      article.appendChild(header);
+
+      return article;
+    }
+
+    function layoutSearchResultGroups() {
+      var searchContainer = document.getElementById('search-results');
+      var searchInput = document.getElementById('search-input');
+
+      if (!searchContainer || !searchInput) {
+        return;
+      }
+
+      var query = (searchInput.value || '').trim();
+      if (!query) {
+        searchContainer.dataset.groupKey = '';
+        return;
+      }
+
+      var postArticles = Array.prototype.slice.call(
+        searchContainer.querySelectorAll(':scope > article:not(.search-publication-item)')
+      );
+      var publications = findPublicationsByQuery(query);
+
+      var key = query.toLowerCase() + '|' + postArticles.length + '|' + publications.map(function (item) {
+        return item.url;
+      }).join(',');
+
+      if (searchContainer.dataset.groupKey === key) {
+        return;
+      }
+
+      Array.prototype.slice
+        .call(searchContainer.querySelectorAll(':scope > .results-group-title, :scope > .search-publication-item'))
+        .forEach(function (node) {
+          node.remove();
+        });
+
+      if (postArticles.length > 0) {
+        var postTitle = document.createElement('h3');
+        postTitle.className = 'results-group-title results-group-title-posts';
+        postTitle.textContent = 'Posts';
+        searchContainer.insertBefore(postTitle, postArticles[0]);
+      }
+
+      if (publications.length > 0) {
+        var noResultText = searchContainer.querySelector(':scope > p.mt-5');
+        if (noResultText) {
+          noResultText.remove();
+        }
+
+        var pubTitle = document.createElement('h3');
+        pubTitle.className = 'results-group-title results-group-title-publications';
+        pubTitle.textContent = 'Publications';
+        searchContainer.appendChild(pubTitle);
+
+        publications.forEach(function (item) {
+          searchContainer.appendChild(createSearchPublicationArticle(item));
+        });
+      }
+
+      searchContainer.dataset.groupKey = key;
+    }
+
+    function renderCompactMeta(target, info, fallbackDateText) {
+      if (!target || !info || !info.kind) {
+        return false;
+      }
+
+      target.className = 'compact-meta-row';
+      target.innerHTML = '';
+
+      if (info.kind === 'post') {
+        var dateNode = document.createElement('span');
+        dateNode.className = 'compact-meta-date';
+        dateNode.textContent = fallbackDateText || info.date || '';
+        target.appendChild(dateNode);
+
+        if (Array.isArray(info.tags) && info.tags.length > 0) {
+          var tagsWrap = document.createElement('div');
+          tagsWrap.className = 'compact-meta-tags';
+
+          info.tags.forEach(function (tag) {
+            var value = (tag || '').toString().trim();
+            if (!value) {
+              return;
+            }
+
+            var tagNode = document.createElement('span');
+            tagNode.className = 'compact-meta-tag';
+            tagNode.textContent = value;
+            tagsWrap.appendChild(tagNode);
+          });
+
+          if (tagsWrap.childElementCount > 0) {
+            target.appendChild(tagsWrap);
+          }
+        }
+
+        return true;
+      }
+
+      if (info.kind === 'publication') {
+        var venueNode = document.createElement('span');
+        venueNode.className = 'compact-meta-venue';
+        venueNode.textContent = info.venue || 'Venue TBD';
+        target.appendChild(venueNode);
+        return true;
+      }
+
+      return false;
+    }
+
+    function enhanceTagResultCards() {
+      var items = document.querySelectorAll('#page-tag ul.content > li');
+
+      items.forEach(function (item) {
+        if (item.dataset.compactMetaReady === 'true') {
+          return;
+        }
+
+        var link = item.querySelector('a');
+        if (!link) {
+          return;
+        }
+
+        var info = resolveContentMeta(link.getAttribute('href'));
+        if (!info) {
+          return;
+        }
+
+        var dashNode = item.querySelector('.dash');
+        var timeNode = item.querySelector('time');
+        var dateText = timeNode ? timeNode.textContent.trim() : '';
+        var metaNode = document.createElement('div');
+
+        if (!renderCompactMeta(metaNode, info, dateText)) {
+          return;
+        }
+
+        if (dashNode) {
+          dashNode.remove();
+        }
+
+        if (timeNode) {
+          timeNode.remove();
+        }
+
+        item.classList.add('tag-result-compact', 'tag-result-' + info.kind);
+        item.appendChild(metaNode);
+        item.dataset.compactMetaReady = 'true';
+      });
+    }
+
+    function enhanceSearchResultCards() {
+      var articles = document.querySelectorAll('#search-results > article');
+
+      articles.forEach(function (article) {
+        if (article.dataset.compactMetaReady === 'true') {
+          return;
+        }
+
+        var link = article.querySelector('h2 a');
+        if (!link) {
+          return;
+        }
+
+        var info = resolveContentMeta(link.getAttribute('href'));
+        if (!info) {
+          return;
+        }
+
+        var metaNode = article.querySelector('.post-meta');
+        if (!metaNode) {
+          return;
+        }
+
+        if (!renderCompactMeta(metaNode, info, info.date || '')) {
+          return;
+        }
+
+        var snippetNode = article.querySelector(':scope > p');
+        if (snippetNode) {
+          snippetNode.remove();
+        }
+
+        article.classList.add('search-result-compact', 'search-result-' + info.kind);
+        article.dataset.compactMetaReady = 'true';
+      });
+    }
+
+    function observeSearchResultCards() {
+      var searchContainer = document.getElementById('search-results');
+      var searchInput = document.getElementById('search-input');
+
+      if (!searchContainer || searchContainer.dataset.compactObserverBound === 'true') {
+        return;
+      }
+
+      searchContainer.dataset.compactObserverBound = 'true';
+
+      var observer = new MutationObserver(function () {
+        layoutSearchResultGroups();
+        enhanceSearchResultCards();
+      });
+
+      observer.observe(searchContainer, { childList: true });
+
+      if (searchInput && searchInput.dataset.compactInputBound !== 'true') {
+        searchInput.dataset.compactInputBound = 'true';
+        searchInput.addEventListener('input', function () {
+          window.requestAnimationFrame(function () {
+            layoutSearchResultGroups();
+            enhanceSearchResultCards();
+          });
+        });
+      }
+
+      layoutSearchResultGroups();
+      enhanceSearchResultCards();
+    }
+
+    function markTabRoute() {
+      var baseUrl = '{{ site.baseurl }}' || '';
+      var path = window.location.pathname || '/';
+
+      if (baseUrl && baseUrl !== '/' && path.indexOf(baseUrl) === 0) {
+        path = path.slice(baseUrl.length) || '/';
+      }
+
+      path = normalizedPath(path);
+
+      var tabRoutes = ['/', '/cv/', '/publications/', '/posts/', '/tags/', '/about/'];
+      var isTabPage = tabRoutes.indexOf(path) !== -1;
+      var isPostOrPubPage = path.indexOf('/posts/') === 0 || path.indexOf('/publications/') === 0;
+
+      if (isTabPage || isPostOrPubPage) {
+        document.documentElement.classList.add('is-tab-route');
+      }
+    }
+
     function initManualModeToggle() {
+      markTabRoute();
+      syncTagIndexCounts();
+      splitTagResultsAndInjectPublications();
+      enhanceTagResultCards();
+      observeSearchResultCards();
+
       var button = ensureToggleButton();
       if (!button) {
         return;

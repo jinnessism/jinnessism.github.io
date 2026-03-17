@@ -1,7 +1,7 @@
 ---
 title: CV
 icon: fas fa-file-lines
-order: 4
+order: 1
 ---
 
 This is my CV, updated last in Oct. 12nd, 2025.

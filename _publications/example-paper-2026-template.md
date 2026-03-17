@@ -4,6 +4,8 @@ date: 2026-03-13 10:00:00 +0900
 tags: [paper, template]
 excerpt: "Template publication entry for journal or conference papers."
 authors: "First Author, Second Author, Jeongmin Park"
+publication_type: "Conference"
+venue_short: "NeurIPS 2026"
 venue: "Conference or Journal Name (Year)"
 status: "Published"
 ---

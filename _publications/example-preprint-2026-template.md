@@ -4,6 +4,8 @@ date: 2026-01-30 10:00:00 +0900
 tags: [preprint, template]
 excerpt: "Template preprint entry for arXiv or tech report updates."
 authors: "Jeongmin Park, Collaborator Name"
+publication_type: "Journal"
+venue_short: "arXiv"
 venue: "arXiv preprint"
 status: "Preprint"
 ---
