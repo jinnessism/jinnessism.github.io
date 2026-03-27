@@ -1,7 +1,7 @@
 ---
 title: "Example Post: Replace This Title"
-date: 2026-03-13 09:00:00 +0900
-tags: [template, starter, paper]
+date: 2028-03-13 09:00:00 +0900
+tags: [template]
 excerpt: "Template post for quick replacement. Update title, date, excerpt, and body."
 ---
 

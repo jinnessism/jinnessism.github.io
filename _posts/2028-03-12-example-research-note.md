@@ -1,7 +1,7 @@
 ---
 title: "Example Post: Research Note"
-date: 2026-03-12 14:30:00 +0900
-tags: [ai, note, template, preprint]
+date: 2028-03-12 14:30:00 +0900
+tags: [template]
 excerpt: "Template research-note post with replaceable sections."
 ---
 

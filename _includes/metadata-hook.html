@@ -118,10 +118,29 @@
 
   #home-sections h2 {
     font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.28;
+    margin-bottom: 0.8rem;
   }
 
   #home-sections h3 {
     font-weight: 500;
+    font-size: 1.36rem;
+    line-height: 1.32;
+    margin-top: 1.05rem;
+    margin-bottom: 0.55rem;
+  }
+
+  #post-list .card .card-body .card-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.32;
+  }
+
+  @media all and (min-width: 1650px) {
+    #main-wrapper > .container {
+      max-width: 1320px;
+    }
   }
 
   .about-notion-embed {
@@ -148,9 +167,48 @@
     }
   }
 
-  article .dynamic-title {
+  article .dynamic-title,
+  main article[data-toc='true'] > header > h1,
+  main article[data-toc='false'] > header > h1,
+  main article[data-toc='true'] > header > h1[data-toc-skip],
+  main article[data-toc='false'] > header > h1[data-toc-skip],
+  article > header > h1[data-toc-skip] {
     font-family: var(--site-font-sans) !important;
+    color: var(--heading-color) !important;
+    font-size: 2rem !important;
     font-weight: 700 !important;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+  }
+
+  main article > header .post-meta,
+  article > header .post-meta {
+    font-family: var(--site-font-sans) !important;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-muted-color) !important;
+  }
+
+  main article > header .post-meta a,
+  main article > header .post-meta em,
+  main article > header .post-meta time,
+  main article > header .post-meta .readtime,
+  article > header .post-meta a,
+  article > header .post-meta em,
+  article > header .post-meta time,
+  article > header .post-meta .readtime {
+    font-family: var(--site-font-sans) !important;
+    font-weight: 600;
+    color: inherit !important;
+  }
+
+  #toc-solo-trigger,
+  #toc-solo-trigger .label,
+  #toc-bar .label,
+  #toc-popup .header .label {
+    font-family: var(--site-font-sans) !important;
+    font-weight: 600;
+    letter-spacing: 0;
   }
 
   #sidebar .site-subtitle {
@@ -221,14 +279,14 @@
 
   .archive-card-title {
     margin: 0;
-    font-size: 1.06rem;
+    font-size: 1.2rem;
     line-height: 1.35;
   }
 
   .archive-card-title a {
     color: #1f3f8f;
     text-decoration: none;
-    font-weight: 650;
+    font-weight: 700;
   }
 
   .archive-card-title a:hover,
@@ -338,8 +396,8 @@
   #page-tag ul.content > li > a {
     display: block;
     color: #1f3f8f;
-    font-size: 1.02rem;
-    font-weight: 650;
+    font-size: 1.16rem;
+    font-weight: 700;
     line-height: 1.4;
     text-decoration: none;
     margin: 0;
@@ -449,7 +507,7 @@
 
   #search-results > article > header {
     display: grid;
-    grid-template-rows: 2.95rem 1.85rem;
+    grid-template-rows: 3.25rem 1.85rem;
     row-gap: 0.6rem;
     flex: 1 1 auto;
   }
@@ -463,13 +521,13 @@
   #search-results > article h2 {
     margin: 0;
     line-height: 1.35;
-    height: 2.95rem;
+    height: 3.25rem;
   }
 
   #search-results > article h2 a {
     color: #1f3f8f;
-    font-size: 1.02rem;
-    font-weight: 650;
+    font-size: 1.16rem;
+    font-weight: 700;
     line-height: 1.4;
     text-decoration: none;
     display: -webkit-box;

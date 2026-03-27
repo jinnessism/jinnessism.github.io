@@ -1,7 +1,7 @@
 ---
 title: "Example Post: Project Update"
-date: 2026-03-11 18:00:00 +0900
-tags: [project, milestone, template, workshop]
+date: 2028-03-11 18:00:00 +0900
+tags: [template]
 excerpt: "Template project update post for fast editing and publishing."
 ---
 
