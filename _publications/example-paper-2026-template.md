@@ -1,6 +1,7 @@
 ---
 title: "Example Paper: Replace With Real Title"
 date: 2026-03-13 10:00:00 +0900
+published: false
 tags: [paper, template]
 excerpt: "Template publication entry for journal or conference papers."
 authors: "First Author, Second Author, Jeongmin Park"

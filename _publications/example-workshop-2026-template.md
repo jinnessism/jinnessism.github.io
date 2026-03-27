@@ -1,6 +1,7 @@
 ---
 title: "Example Workshop Paper: Replace With Real Title"
 date: 2026-02-25 10:00:00 +0900
+published: false
 tags: [workshop, template]
 excerpt: "Template workshop publication entry."
 authors: "First Author, Jeongmin Park"

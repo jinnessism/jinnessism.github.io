@@ -1,6 +1,7 @@
 ---
 title: "Example Preprint: Replace With Real Title"
 date: 2026-01-30 10:00:00 +0900
+published: false
 tags: [preprint, template]
 excerpt: "Template preprint entry for arXiv or tech report updates."
 authors: "Jeongmin Park, Collaborator Name"
