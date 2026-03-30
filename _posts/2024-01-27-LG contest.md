@@ -2,7 +2,7 @@
 title: "3rd Data Science Contest, with LG Electronics"
 date: 2024-01-27 18:00:00 +0900
 tags: [project, data science, contest, optimization]
-excerpt: "Template project update post for fast editing and publishing."
+excerpt: "A project on demand forecasting and inventory optimisation for the LG Electronics data science contest."
 ---
 
 This post archives our work in the 3rd Data Science Contest with LG Electronics. I participated with three teammates: Dayoon, Juhee, and Donghwan.
