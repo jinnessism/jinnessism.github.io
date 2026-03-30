@@ -8,8 +8,25 @@ show_post_list: false
 {% assign news_posts = site.posts | where_exp: 'item', 'item.hidden != true' %}
 
 <section id="about-me" class="mb-5">
+  <style>
+    #about-me .about-copy p {
+      margin-bottom: 1rem;
+    }
+
+    #about-me .about-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    #about-me .about-quote {
+      display: inline-block;
+      font-weight: 700;
+      white-space: nowrap;
+      max-width: 100%;
+      font-size: clamp(0.95rem, 1rem + 0.2vw, 1.1rem);
+    }
+  </style>
   <h2>About Me</h2>
-  <p>{{ home.about_me }}</p>
+  <div class="about-copy">{{ home.about_me | markdownify }}</div>
 </section>
 
 <section id="news" class="mb-5">
