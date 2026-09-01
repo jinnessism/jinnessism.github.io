@@ -6,6 +6,8 @@ hero_image: "/assets/img/hero.jpg"
 name_ko: "박정민"
 hero_role: "M.S. Student &middot; <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST"
 hero_tagline: "Flow Map Alignment &amp; Multi-agentic Systems"
+# Short 1-2 sentence intro shown inside the hero card (a summary of About Me).
+hero_intro: "M.S. student at <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST, working on generative model alignment and multi-agentic systems. I enjoy turning new AI research into things that solve real problems — always open to collaborations and conversations."
 
 about_me: |-
   <span class='about-quote'>Optimism is the faith that leads to achievement.</span>

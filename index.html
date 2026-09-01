@@ -28,6 +28,7 @@ show_post_list: false
       <h1 class="hero-name">{{ site.title }}{% if home.name_ko %} <span class="hero-hangul">{{ home.name_ko }}</span>{% endif %}</h1>
       {% if home.hero_role %}<p class="hero-role">{{ home.hero_role }}</p>{% endif %}
       {% if home.hero_tagline %}<p class="hero-tagline">{{ home.hero_tagline }}</p>{% endif %}
+      {% if home.hero_intro %}<p class="hero-intro">{{ home.hero_intro }}</p>{% endif %}
       <div class="hero-links">
         <a class="hero-cta hero-cta--primary" href="{{ '/assets/files/cv.pdf' | relative_url }}">CV</a>
         <a class="hero-cta" href="mailto:{{ site.social.email }}">Email</a>

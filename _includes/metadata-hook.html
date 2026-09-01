@@ -840,9 +840,17 @@
   }
 
   #hero .hero-tagline {
-    margin: 0 0 0.8rem;
+    margin: 0 0 0.55rem;
     color: var(--text-muted-color);
     font-size: 0.92rem;
+  }
+
+  #hero .hero-intro {
+    margin: 0 0 0.85rem;
+    color: var(--text-color);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    max-width: 46rem;
   }
 
   #hero .hero-links {
@@ -1286,7 +1294,7 @@
         return lsStored;
       }
 
-      // Chirpy 7.x drives the core theme via `data-bs-theme` (Bootstrap 5).
+      /* Chirpy 7.x drives the core theme via data-bs-theme (Bootstrap 5). */
       var bsAttr = document.documentElement.getAttribute('data-bs-theme');
       if (bsAttr === DARK || bsAttr === LIGHT) {
         return bsAttr;
@@ -1301,8 +1309,8 @@
     }
 
     function applyMode(mode) {
-      // `data-mode` drives our custom rules; `data-bs-theme` drives Chirpy's core
-      // (page background, text, cards). Both must be set or only half the page flips.
+      /* data-mode drives our custom rules; data-bs-theme drives Chirpy's core
+         (page background, text, cards). Both must be set or only half the page flips. */
       document.documentElement.setAttribute(MODE_ATTR, mode);
       document.documentElement.setAttribute('data-bs-theme', mode);
       sessionStorage.setItem(MODE_KEY, mode);
@@ -1364,9 +1372,9 @@
         return button;
       }
 
-      // In Chirpy 7.x the mode toggle lives inside a `.btn-group` wrapper, so it
-      // is NOT a direct child of `.sidebar-bottom`. Resolve the container from the
-      // mode button itself, and insert relative to its top-level wrapper.
+      /* In Chirpy 7.x the mode toggle lives inside a .btn-group wrapper, so it is
+         NOT a direct child of .sidebar-bottom. Resolve the container from the mode
+         button itself, and insert relative to its top-level wrapper. */
       var modeBtn = document.getElementById('mode-toggle');
       var bottom = null;
 
@@ -1387,8 +1395,8 @@
       button.type = 'button';
       button.className = 'btn btn-link nav-link';
 
-      // Walk up from the mode button to the child that sits directly under
-      // `.sidebar-bottom`, then insert our button right after it.
+      /* Walk up from the mode button to the child that sits directly under
+         .sidebar-bottom, then insert our button right after it. */
       var anchor = modeBtn;
       while (anchor && anchor.parentNode !== bottom) {
         anchor = anchor.parentNode;
@@ -1424,8 +1432,8 @@
       );
     }
 
-    // Wrap the mode + font toggles into ONE flex item (a segmented pill) so the
-    // sidebar-bottom row keeps 5 items instead of 6 and no longer wraps.
+    /* Wrap the mode + font toggles into ONE flex item (a segmented pill) so the
+       sidebar-bottom row keeps 5 items instead of 6 and no longer wraps. */
     function groupToggles() {
       if (document.getElementById('toggle-combo')) {
         return;
@@ -1445,7 +1453,7 @@
         return;
       }
 
-      // The mode button sits inside a `.btn-group`; find that top-level wrapper.
+      /* The mode button sits inside a .btn-group; find that top-level wrapper. */
       var modeWrap = modeBtn;
       while (modeWrap && modeWrap.parentNode !== bottom) {
         modeWrap = modeWrap.parentNode;
@@ -2050,12 +2058,12 @@
       enhanceTagResultCards();
       observeSearchResultCards();
 
-      // Sync both theme attributes to the resolved mode so custom rules
-      // (data-mode) and Chirpy core (data-bs-theme) stay in agreement.
+      /* Sync both theme attributes to the resolved mode so custom rules
+         (data-mode) and Chirpy core (data-bs-theme) stay in agreement. */
       applyMode(getActiveMode());
 
-      // Apply saved font before wiring the button, so it works even if the
-      // sidebar button cannot be created for some reason.
+      /* Apply saved font before wiring the button, so it works even if the
+         sidebar button cannot be created for some reason. */
       applyFont(getActiveFont());
 
       var button = ensureToggleButton();
