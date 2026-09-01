@@ -7,6 +7,37 @@ show_post_list: false
 {% assign publications = site.publications | sort: 'date' | reverse %}
 {% assign news_posts = site.posts | where_exp: 'item', 'item.hidden != true' %}
 
+{%- comment -%}
+  Hero photo: shows an image ONLY if the file at `hero_image` actually exists in the repo.
+  Set `hero_image` in _data/home.yml (default: /assets/img/hero.jpg). If that file is
+  absent, the banner renders with no photo. To use your existing portrait, point
+  hero_image at /assets/img/profile_image_2022.jpg (or drop a hero.jpg into assets/img/).
+{%- endcomment -%}
+{% assign hero_image = home.hero_image | default: '/assets/img/hero.jpg' %}
+{% assign hero_has_image = false %}
+{% for sf in site.static_files %}
+  {% if sf.path == hero_image %}{% assign hero_has_image = true %}{% break %}{% endif %}
+{% endfor %}
+
+<section id="hero" class="mb-5">
+  <div class="hero-inner{% unless hero_has_image %} hero-inner--no-photo{% endunless %}">
+    {% if hero_has_image %}
+      <img class="hero-avatar" src="{{ hero_image | relative_url }}" alt="{{ site.social.name }}">
+    {% endif %}
+    <div class="hero-text">
+      <h1 class="hero-name">{{ site.title }}{% if home.name_ko %} <span class="hero-hangul">{{ home.name_ko }}</span>{% endif %}</h1>
+      {% if home.hero_role %}<p class="hero-role">{{ home.hero_role }}</p>{% endif %}
+      {% if home.hero_tagline %}<p class="hero-tagline">{{ home.hero_tagline }}</p>{% endif %}
+      <div class="hero-links">
+        <a class="hero-cta hero-cta--primary" href="{{ '/assets/files/cv.pdf' | relative_url }}">CV</a>
+        <a class="hero-cta" href="mailto:{{ site.social.email }}">Email</a>
+        <a class="hero-cta" href="https://github.com/{{ site.github.username }}" target="_blank" rel="noopener">GitHub</a>
+        <a class="hero-cta" href="https://www.linkedin.com/in/jinnessism" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="about-me" class="mb-5">
   <style>
     #about-me .about-copy p {
@@ -26,63 +57,102 @@ show_post_list: false
       font-size: clamp(0.95rem, 1rem + 0.2vw, 1.1rem);
     }
   </style>
-  <h2>About Me</h2>
+  <h2><span class="sec-emoji">👋</span>About Me</h2>
   <div class="about-copy">{{ home.about_me | markdownify }}</div>
 </section>
 
 <section id="news" class="mb-5">
-  <h2>News</h2>
-  {% if news_posts.size > 0 %}
-    <ul>
-      {% for post in news_posts limit: 5 %}
-        <li>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <span class="text-muted">({{ post.date | date: '%Y-%m-%d' }})</span>
+  <h2><span class="sec-emoji">📰</span>News</h2>
+  {%- comment -%}
+    Merge home.yml `news` entries and blog posts into one chronological timeline.
+    Each row is encoded as "sortkey~~~display-date~~~link~~~text"; sortkey is a
+    dash-separated date (YYYY-MM-DD / YYYY-MM) so lexicographic sort == chronological.
+  {%- endcomment -%}
+  {% assign merged = '' | split: '' %}
+  {% if home.news %}
+    {% for item in home.news %}
+      {% assign sd = item.sort_date | default: item.date | replace: '.', '-' %}
+      {% assign row = sd | append: '~~~' | append: item.date | append: '~~~' | append: item.link | append: '~~~' | append: item.text %}
+      {% assign merged = merged | push: row %}
+    {% endfor %}
+  {% endif %}
+  {% for post in news_posts %}
+    {% assign sd = post.date | date: '%Y-%m-%d' %}
+    {% assign disp = post.date | date: '%Y.%m.%d' %}
+    {% assign purl = post.url | relative_url %}
+    {% assign row = sd | append: '~~~' | append: disp | append: '~~~' | append: purl | append: '~~~' | append: post.title %}
+    {% assign merged = merged | push: row %}
+  {% endfor %}
+  {% assign merged = merged | sort | reverse %}
+
+  {% if merged.size > 0 %}
+    <ul class="news-timeline">
+      {% for row in merged limit: 5 %}
+        {% assign parts = row | split: '~~~' %}
+        <li class="news-item">
+          <time class="news-date">{{ parts[1] }}</time>
+          <span class="news-body">
+            {%- assign nlink = parts[2] -%}
+            {%- if nlink and nlink != '' -%}
+              <a href="{{ nlink }}">{{ parts[3] }}</a>
+            {%- else -%}
+              {{ parts[3] }}
+            {%- endif -%}
+          </span>
         </li>
       {% endfor %}
     </ul>
+    {% if news_posts.size > 0 %}
+      <p class="section-more"><a href="{{ '/posts/' | relative_url }}">See all posts &rarr;</a></p>
+    {% endif %}
   {% else %}
-    <p>No general updates yet. Add your first post in `_posts/`.</p>
+    <p>No updates yet. Add entries under <code>news:</code> in <code>_data/home.yml</code>.</p>
   {% endif %}
 </section>
 
 <section id="education" class="mb-5">
-  <h2>Education</h2>
+  <h2><span class="sec-emoji">🎓</span>Education</h2>
   {% if home.education and home.education.size > 0 %}
-    <ul>
-      {% for edu in home.education %}
-        <li>
-          <strong>{{ edu.degree }}</strong>, {{ edu.institution }} ({{ edu.period }})
-          {% if edu.details %}
-            <br>
-            {{ edu.details }}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
+    {% if home.education_style == 'logos' %}
+      <ul class="edu-list">
+        {% for edu in home.education %}
+          <li class="edu-item">
+            <span class="edu-logo">
+              {% if edu.logo %}<img src="{{ edu.logo | relative_url }}" alt="{{ edu.institution | escape }}">{% else %}{{ edu.mono | default: edu.institution }}{% endif %}
+            </span>
+            <div class="edu-body">
+              <div class="edu-degree">{{ edu.degree }}</div>
+              <div class="edu-meta">{{ edu.institution }} &middot; {{ edu.period }}</div>
+              {% if edu.details %}<div class="edu-details">{{ edu.details }}</div>{% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <ul>
+        {% for edu in home.education %}
+          <li>
+            <strong>{{ edu.degree }}</strong>, {{ edu.institution }} ({{ edu.period }})
+            {% if edu.details %}<br>{{ edu.details }}{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   {% endif %}
 </section>
 
-<section id="publication" class="mb-1">
-  <h2>Publication</h2>
+<section id="publication" class="mb-5">
+  <h2><span class="sec-emoji">📄</span>Publications</h2>
   <p>{{ home.publication_note }}</p>
 
   {% if publications.size > 0 %}
-    <ul>
-      {% for pub in publications limit: 5 %}
-        <li>
-          <a href="{{ pub.url | relative_url }}">{{ pub.title }}</a>
-          <span class="text-muted">({{ pub.date | date: '%Y-%m-%d' }})</span>
-          {% if pub.excerpt %}
-            <br>
-            {{ pub.excerpt | strip_html | truncate: 140 }}
-          {% endif %}
-        </li>
+    <div class="archive-board">
+      {% for pub in publications limit: 3 %}
+        {% include publication-card.html pub=pub compact=true %}
       {% endfor %}
-    </ul>
+    </div>
+    <p class="section-more"><a href="{{ '/publications/' | relative_url }}">See all publications &rarr;</a></p>
   {% else %}
-    <p>No publication posts yet. Add one in `_publications/`.</p>
+    <p>No publications yet &mdash; coming soon.</p>
   {% endif %}
-
-  <p><a href="{{ '/publications/' | relative_url }}">See all publications</a></p>
 </section>

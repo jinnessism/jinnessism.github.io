@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Teaser figure placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7faff"/>
+      <stop offset="1" stop-color="#eef3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="639" height="399" fill="none" stroke="#d0dcf5" stroke-width="1"/>
+
+  <!-- label -->
+  <text x="32" y="46" font-family="Manrope, Inter, -apple-system, Segoe UI, sans-serif"
+        font-size="15" font-weight="700" letter-spacing="1.5" fill="#365ca8">FIG. 1 — TEASER</text>
+  <text x="32" y="70" font-family="Manrope, Inter, -apple-system, Segoe UI, sans-serif"
+        font-size="12" font-weight="500" fill="#7d8bb0">Replace with your paper figure</text>
+
+  <!-- left panel: line plot -->
+  <rect x="32" y="96" width="270" height="256" rx="10" fill="#ffffff" stroke="#dae3f7"/>
+  <line x1="56" y1="320" x2="278" y2="320" stroke="#c3d0ee" stroke-width="1.5"/>
+  <line x1="56" y1="320" x2="56" y2="128" stroke="#c3d0ee" stroke-width="1.5"/>
+  <polyline points="60,300 100,260 140,278 180,210 220,190 262,150"
+            fill="none" stroke="#1f3f8f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="60,312 100,300 140,296 180,268 220,258 262,232"
+            fill="none" stroke="#6f8ccf" stroke-width="2.5" stroke-dasharray="6 6" stroke-linecap="round"/>
+  <circle cx="262" cy="150" r="5" fill="#1f3f8f"/>
+
+  <!-- right panel: bars -->
+  <rect x="322" y="96" width="286" height="256" rx="10" fill="#ffffff" stroke="#dae3f7"/>
+  <line x1="348" y1="320" x2="588" y2="320" stroke="#c3d0ee" stroke-width="1.5"/>
+  <rect x="360" y="238" width="34" height="82" rx="4" fill="#9db6e6"/>
+  <rect x="410" y="196" width="34" height="124" rx="4" fill="#6f8ccf"/>
+  <rect x="460" y="160" width="34" height="160" rx="4" fill="#3f68b5"/>
+  <rect x="510" y="128" width="34" height="192" rx="4" fill="#1f3f8f"/>
+  <rect x="560" y="182" width="34" height="138" rx="4" fill="#5680c6"/>
+</svg>

@@ -1,0 +1,81 @@
+{%- comment -%}
+  Shared publication card.
+  Usage: {% include publication-card.html pub=pub compact=true %}
+  - pub:     a document from site.publications
+  - compact: when true, hides the summary and BibTeX (used on the home page)
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+{%- assign compact = include.compact -%}
+
+{%- assign publication_type_raw = pub.publication_type | default: pub.pub_type | default: pub.type | strip -%}
+{%- assign publication_type = '' -%}
+{%- if publication_type_raw != '' -%}
+  {%- assign publication_type_normalized = publication_type_raw | downcase -%}
+  {%- if publication_type_normalized == 'journal' -%}
+    {%- assign publication_type = 'Journal' -%}
+  {%- elsif publication_type_normalized == 'conference' -%}
+    {%- assign publication_type = 'Conference' -%}
+  {%- else -%}
+    {%- assign publication_type = publication_type_raw -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if publication_type == '' -%}
+  {%- if pub.tags contains 'preprint' -%}
+    {%- assign publication_type = 'Preprint' -%}
+  {%- else -%}
+    {%- assign publication_type = 'Conference' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign publication_venue = pub.venue_short | default: pub.venue | default: 'Venue TBD' | strip -%}
+{%- assign author_highlight = pub.author_highlight | default: 'Jeongmin Park' -%}
+{%- assign strong_name = '<strong class="pub-author-me">' | append: author_highlight | append: '</strong>' -%}
+
+<article class="archive-card pub-card{% if pub.thumbnail %} pub-card--with-thumb{% endif %}">
+  {%- if pub.thumbnail -%}
+    <a class="pub-card-thumb" href="{{ pub.url | relative_url }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ pub.thumbnail | relative_url }}" alt="{{ pub.title | escape }} thumbnail" loading="lazy">
+    </a>
+  {%- endif -%}
+
+  <div class="pub-card-body">
+    <h3 class="archive-card-title">
+      <a href="{{ pub.url | relative_url }}">{{ pub.title }}</a>
+    </h3>
+
+    {%- if pub.authors -%}
+      <p class="pub-card-authors">{{ pub.authors | replace: author_highlight, strong_name }}</p>
+    {%- endif -%}
+
+    <div class="archive-card-tags" aria-label="Publication metadata tags">
+      <span class="archive-chip archive-chip-type">{{ publication_type }}</span>
+      <span class="archive-chip archive-chip-venue" title="{{ publication_venue | escape }}">{{ publication_venue }}</span>
+      {%- if pub.status -%}
+        <span class="archive-chip archive-chip-status">{{ pub.status }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- unless compact -%}
+      {%- if pub.excerpt -%}
+        <p class="archive-card-summary">{{ pub.excerpt | strip_html | strip | truncate: 180 }}</p>
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- if pub.links and pub.links.size > 0 -%}
+      <div class="pub-card-links">
+        {%- for link in pub.links -%}
+          <a class="pub-link-btn" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.name }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- unless compact -%}
+      {%- if pub.bibtex -%}
+        <details class="pub-bibtex-details">
+          <summary>BibTeX</summary>
+          <pre><code>{{ pub.bibtex | strip }}</code></pre>
+        </details>
+      {%- endif -%}
+    {%- endunless -%}
+  </div>
+</article>

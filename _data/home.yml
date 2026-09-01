@@ -1,3 +1,12 @@
+# ----- Hero (top banner on the home page) -----
+# Photo shows ONLY if this file exists in the repo; otherwise the banner has no photo.
+# To show your portrait, either drop a file at the path below, or point it at an
+# existing image e.g. "/assets/img/profile_image_2022.jpg".
+hero_image: "/assets/img/hero.jpg"
+name_ko: "박정민"
+hero_role: "M.S. Student &middot; <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST"
+hero_tagline: "Flow Map Alignment &amp; Multi-agentic Systems"
+
 about_me: |-
   <span class='about-quote'>Optimism is the faith that leads to achievement.</span>
 
@@ -9,16 +18,40 @@ publication_note: >-
   Publication notes are short posts where I explain each paper in plain language,
   including motivation, key idea, and takeaways.
 
+# ----- News (plain-text updates — NO post file needed) -----
+# Just add a line here. Newest first (top = shown first).
+# `text` may include inline HTML/links. `link` is optional and makes the whole
+# line clickable (an internal path like /posts/xxx/ or an external URL).
+# If you delete/empty this list, the News section falls back to recent posts.
+news:
+  - date: "2026.09"
+    text: "Launched my personal website."
+  - date: "2026.02"
+    text: "Admitted to the <a href='https://gsds.kaist.ac.kr/'>Graduate School of Data Science (GSDS)</a> at KAIST."
+  - date: "2026.02"
+    text: "Started my M.S. at <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST."
+  - date: "2024.01"
+    text: "Won <strong>3rd prize</strong> at the LG Electronics Data Science Contest #3."
+    # link: "/posts/your-post-slug/"   # optional: link this item to a post/URL
+
+# Education layout: "plain" (simple list) or "logos" (monogram/logo timeline).
+# This is the A/B switch — flip the value to compare the two versions.
+education_style: "logos"
+
 education:
   - degree: "M.S. in <a href='https://gsds.kaist.ac.kr/'>Data Science</a>"
     institution: "KAIST"
+    mono: "KAIST"
+    # logo: /assets/img/logos/kaist.png   # optional: drop a logo file here to override the monogram
     period: "Feb 2026 - Present"
-    details: "Research focus: Generative Model Alignment, Reinforcement Learning, RAG, and Multi-modal AI."
+    details: "Research focus: Flow Map Alignment, Reinforcement Learning, and Multi-agentic Systems."
   - degree: "B.S. in <a href='https://cs.kaist.ac.kr/'>Computer Science</a>, Double Major in <a href='https://mathsci.kaist.ac.kr/'>Mathematics</a> and <a href='https://ie.kaist.ac.kr/'>Industrial Engineering</a>"
     institution: "KAIST"
+    mono: "KAIST"
     period: "Feb 2019 - Feb 2026"
     details: "Undergraduate studies in computer science with a focus on AI and data science. GPA 3.68/4.3(200 credits)."
   - degree: "High School Diploma"
     institution: "Daegu Science High School"
+    mono: "DSHS"
     period: "Feb 2016 - Jan 2019"
     details: "GPA: 3.68/4.3 (181 credits), with Mathematical Sciences GPA: 4.3/4.3 (36 credits)."

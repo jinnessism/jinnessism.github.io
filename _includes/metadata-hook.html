@@ -2,6 +2,10 @@
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
 >
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+>
 
 <style>
   :root {
@@ -237,6 +241,94 @@
   #sidebar .sidebar-bottom #mode-toggle .mode-toggle-label {
     display: block;
     transform: translateY(0.01rem);
+  }
+
+  /* ----- Font switch (Inter <-> Manrope, the reference-site font) ----- */
+  html[data-font='manrope'] {
+    --site-font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+  }
+
+  #sidebar .sidebar-bottom #font-toggle {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin-right: 0.8rem;
+    font-family: var(--site-font-sans);
+  }
+
+  @media all and (min-width: 1650px) {
+    #sidebar .sidebar-bottom #font-toggle {
+      margin-right: 1rem;
+    }
+  }
+
+  #sidebar .sidebar-bottom #font-toggle .font-toggle-label {
+    display: block;
+    transform: translateY(0.01rem);
+  }
+
+  /* Combined mode + font toggle pill: one flex item so the row stops wrapping. */
+  #sidebar .sidebar-bottom .toggle-combo {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.5rem;
+  }
+
+  #sidebar .sidebar-bottom .toggle-combo .btn-group,
+  #sidebar .sidebar-bottom .toggle-combo #mode-toggle,
+  #sidebar .sidebar-bottom .toggle-combo #font-toggle {
+    margin-right: 0 !important;
+  }
+
+  /* Make the font toggle a round button matching the mode toggle + socials,
+     so L and Aa read as one paired control. */
+  #sidebar .sidebar-bottom .toggle-combo #font-toggle {
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+    margin: 0 0 0.5rem 0.4rem;
+    border: 0;
+    border-radius: 50%;
+    color: var(--sidebar-btn-color);
+    background-color: var(--sidebar-btn-bg);
+    box-shadow: var(--sidebar-border-color) 0 0 0 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #sidebar .sidebar-bottom .toggle-combo #font-toggle:hover {
+    background-color: var(--sidebar-hover-bg);
+    color: var(--sidebar-active-color);
+  }
+
+  #sidebar .sidebar-bottom .toggle-combo #font-toggle .font-toggle-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+    transform: none;
+  }
+
+  /* Tighten the whole bottom row so all 5 items fit on one line (no wrap). */
+  #sidebar .sidebar-bottom {
+    padding-left: 2rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  #sidebar .sidebar-bottom .toggle-combo {
+    margin-right: 0.45rem;
+  }
+
+  #sidebar .sidebar-bottom > a:not(:last-child) {
+    margin-right: 0.45rem !important;
+  }
+
+  #sidebar .sidebar-bottom #mode-toggle,
+  #sidebar .sidebar-bottom > a {
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
   html[data-mode='dark'] {
@@ -689,6 +781,458 @@
     background: rgba(44, 72, 142, 0.35);
     border-color: #7696d3;
   }
+
+  /* =========================================================
+     Home landing additions (hero, news timeline, pub cards, edu)
+     ========================================================= */
+
+  /* ----- Section heading emoji ----- */
+  #home-sections h2 .sec-emoji {
+    margin-right: 0.45rem;
+    font-size: 0.92em;
+  }
+
+  /* ----- Hero ----- */
+  #hero .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1.6rem;
+    border: 1px solid #d0dcf5;
+    border-radius: 1.1rem;
+    background: linear-gradient(135deg, #f6f9ff 0%, #eaf1ff 100%);
+  }
+
+  #hero .hero-avatar {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+    border: 3px solid #fff;
+    box-shadow: 0 6px 18px rgba(31, 63, 143, 0.2);
+  }
+
+  #hero .hero-text {
+    min-width: 0;
+  }
+
+  #hero .hero-name {
+    font-family: var(--site-font-sans) !important;
+    font-size: 1.95rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.2rem;
+  }
+
+  #hero .hero-hangul {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-muted-color);
+    margin-left: 0.4rem;
+  }
+
+  #hero .hero-role {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  #hero .hero-tagline {
+    margin: 0 0 0.8rem;
+    color: var(--text-muted-color);
+    font-size: 0.92rem;
+  }
+
+  #hero .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  #hero .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.34rem 0.9rem;
+    border: 1px solid #c0d1f3;
+    border-radius: 999px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #1f3f8f;
+    background: #fff;
+    transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+
+  #hero .hero-cta:hover,
+  #hero .hero-cta:focus-visible {
+    border-color: #1f3f8f;
+    background: #eaf1ff;
+  }
+
+  #hero .hero-cta--primary {
+    background: #1f3f8f;
+    color: #fff;
+    border-color: #1f3f8f;
+  }
+
+  #hero .hero-cta--primary:hover,
+  #hero .hero-cta--primary:focus-visible {
+    background: #365ca8;
+    border-color: #365ca8;
+    color: #fff;
+  }
+
+  @media all and (max-width: 576px) {
+    #hero .hero-inner {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+
+    #hero .hero-links {
+      justify-content: center;
+    }
+  }
+
+  /* ----- News timeline ----- */
+  ul.news-timeline {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  ul.news-timeline .news-item {
+    display: flex;
+    gap: 0.9rem;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--main-border-color);
+  }
+
+  ul.news-timeline .news-item:last-child {
+    border-bottom: none;
+  }
+
+  ul.news-timeline .news-date {
+    flex: 0 0 auto;
+    width: 5.8rem;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1f3f8f;
+  }
+
+  ul.news-timeline .news-body {
+    min-width: 0;
+  }
+
+  .section-more {
+    margin-top: 0.7rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  @media all and (max-width: 576px) {
+    ul.news-timeline .news-item {
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    ul.news-timeline .news-date {
+      width: auto;
+    }
+  }
+
+  /* ----- Publication cards ----- */
+  .pub-card--with-thumb {
+    display: flex;
+    gap: 1.15rem;
+    align-items: flex-start;
+  }
+
+  .pub-card-thumb {
+    flex: 0 0 auto;
+    width: 158px;
+    display: block;
+    border-radius: 0.65rem;
+    overflow: hidden;
+    border: 1px solid #d0dcf5;
+    background: #f6f9ff;
+  }
+
+  .pub-card-thumb img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .pub-card-body {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .pub-card-authors {
+    margin: 0.4rem 0 0.15rem;
+    font-size: 0.86rem;
+    color: var(--text-muted-color);
+    line-height: 1.5;
+  }
+
+  .pub-author-me {
+    color: var(--text-color);
+    font-weight: 700;
+  }
+
+  .pub-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.65rem;
+  }
+
+  .pub-link-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.62rem;
+    border: 1px solid #c0d1f3;
+    border-radius: 0.5rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #1f3f8f;
+    background: #fff;
+    cursor: pointer;
+    transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+  }
+
+  .pub-link-btn:hover,
+  .pub-link-btn:focus-visible {
+    background: #1f3f8f;
+    color: #fff;
+    border-color: #1f3f8f;
+  }
+
+  .pub-bibtex-details {
+    margin-top: 0.6rem;
+  }
+
+  .pub-bibtex-details > summary {
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    padding: 0.22rem 0.62rem;
+    border: 1px solid #c0d1f3;
+    border-radius: 0.5rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #1f3f8f;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .pub-bibtex-details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .pub-bibtex-details > summary::before {
+    content: "{ } ";
+    white-space: pre;
+    opacity: 0.7;
+  }
+
+  .pub-bibtex-details > summary:hover {
+    background: #eaf1ff;
+  }
+
+  .pub-bibtex-details[open] > summary {
+    background: #1f3f8f;
+    color: #fff;
+    border-color: #1f3f8f;
+  }
+
+  .pub-bibtex-details pre {
+    margin: 0.55rem 0 0;
+    padding: 0.85rem 0.95rem;
+    background: #0f1b33;
+    color: #dbe7ff;
+    border-radius: 0.6rem;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    overflow-x: auto;
+  }
+
+  .pub-bibtex-details pre code {
+    color: inherit;
+    background: none;
+    padding: 0;
+  }
+
+  .archive-chip-status {
+    color: #7a4b12;
+    background: #fff5e6;
+    border-color: #f0d8a8;
+  }
+
+  @media all and (max-width: 576px) {
+    .pub-card--with-thumb {
+      flex-direction: column;
+    }
+
+    .pub-card-thumb {
+      width: 100%;
+    }
+  }
+
+  /* ----- Education (logos variant) ----- */
+  ul.edu-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  ul.edu-list .edu-item {
+    display: flex;
+    gap: 0.95rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed var(--main-border-color);
+  }
+
+  ul.edu-list .edu-item:last-child {
+    border-bottom: none;
+  }
+
+  .edu-logo {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf1ff;
+    border: 1px solid #d0dcf5;
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #1f3f8f;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .edu-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .edu-body {
+    min-width: 0;
+  }
+
+  .edu-degree {
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .edu-meta {
+    color: var(--text-muted-color);
+    font-size: 0.86rem;
+    margin-top: 0.1rem;
+  }
+
+  .edu-details {
+    color: var(--text-muted-color);
+    font-size: 0.84rem;
+    margin-top: 0.2rem;
+  }
+
+  /* ----- Dark mode for the above ----- */
+  html[data-mode='dark'] #hero .hero-inner {
+    border-color: #395893;
+    background: linear-gradient(135deg, rgba(23, 37, 68, 0.92), rgba(20, 33, 61, 0.92));
+  }
+
+  html[data-mode='dark'] #hero .hero-avatar {
+    border-color: #1b2a4a;
+  }
+
+  html[data-mode='dark'] #hero .hero-cta {
+    color: #b8ccff;
+    background: rgba(20, 33, 61, 0.6);
+    border-color: #395893;
+  }
+
+  html[data-mode='dark'] #hero .hero-cta:hover,
+  html[data-mode='dark'] #hero .hero-cta:focus-visible {
+    background: rgba(44, 72, 142, 0.4);
+    border-color: #7696d3;
+  }
+
+  html[data-mode='dark'] #hero .hero-cta--primary {
+    background: #2c488e;
+    color: #fff;
+    border-color: #2c488e;
+  }
+
+  html[data-mode='dark'] #hero .hero-cta--primary:hover,
+  html[data-mode='dark'] #hero .hero-cta--primary:focus-visible {
+    background: #365ca8;
+    border-color: #365ca8;
+  }
+
+  html[data-mode='dark'] ul.news-timeline .news-date {
+    color: #b8ccff;
+  }
+
+  html[data-mode='dark'] .pub-card-thumb {
+    border-color: #395893;
+    background: rgba(20, 33, 61, 0.6);
+  }
+
+  html[data-mode='dark'] .pub-link-btn {
+    color: #b8ccff;
+    background: rgba(20, 33, 61, 0.6);
+    border-color: #395893;
+  }
+
+  html[data-mode='dark'] .pub-link-btn:hover,
+  html[data-mode='dark'] .pub-link-btn:focus-visible {
+    background: #2c488e;
+    color: #fff;
+    border-color: #2c488e;
+  }
+
+  html[data-mode='dark'] .pub-bibtex-details > summary {
+    color: #b8ccff;
+    background: rgba(20, 33, 61, 0.6);
+    border-color: #395893;
+  }
+
+  html[data-mode='dark'] .pub-bibtex-details > summary:hover {
+    background: rgba(44, 72, 142, 0.4);
+  }
+
+  html[data-mode='dark'] .pub-bibtex-details[open] > summary {
+    background: #2c488e;
+    color: #fff;
+    border-color: #2c488e;
+  }
+
+  html[data-mode='dark'] .archive-chip-status {
+    color: #ffd9a3;
+    background: rgba(122, 75, 18, 0.28);
+    border-color: #8a6a34;
+  }
+
+  html[data-mode='dark'] .edu-logo {
+    background: rgba(44, 72, 142, 0.35);
+    border-color: #395893;
+    color: #cfe0ff;
+  }
 </style>
 
 <script>
@@ -734,6 +1278,20 @@
         return stored;
       }
 
+      var lsStored = null;
+      try {
+        lsStored = localStorage.getItem(MODE_KEY);
+      } catch (e) {}
+      if (lsStored === DARK || lsStored === LIGHT) {
+        return lsStored;
+      }
+
+      // Chirpy 7.x drives the core theme via `data-bs-theme` (Bootstrap 5).
+      var bsAttr = document.documentElement.getAttribute('data-bs-theme');
+      if (bsAttr === DARK || bsAttr === LIGHT) {
+        return bsAttr;
+      }
+
       var attr = document.documentElement.getAttribute(MODE_ATTR);
       if (attr === DARK || attr === LIGHT) {
         return attr;
@@ -743,9 +1301,165 @@
     }
 
     function applyMode(mode) {
+      // `data-mode` drives our custom rules; `data-bs-theme` drives Chirpy's core
+      // (page background, text, cards). Both must be set or only half the page flips.
       document.documentElement.setAttribute(MODE_ATTR, mode);
+      document.documentElement.setAttribute('data-bs-theme', mode);
       sessionStorage.setItem(MODE_KEY, mode);
+      try {
+        localStorage.setItem(MODE_KEY, mode);
+      } catch (e) {}
       window.postMessage({ id: 'theme-mode' }, '*');
+    }
+
+    var FONT_KEY = 'site-font';
+    var FONT_ATTR = 'data-font';
+    var FONT_INTER = 'inter';
+    var FONT_MANROPE = 'manrope';
+
+    function getActiveFont() {
+      var stored = null;
+      try {
+        stored = localStorage.getItem(FONT_KEY);
+      } catch (e) {}
+      if (stored === FONT_INTER || stored === FONT_MANROPE) {
+        return stored;
+      }
+
+      var attr = document.documentElement.getAttribute(FONT_ATTR);
+      if (attr === FONT_MANROPE) {
+        return FONT_MANROPE;
+      }
+
+      return FONT_INTER;
+    }
+
+    function applyFont(font) {
+      document.documentElement.setAttribute(FONT_ATTR, font);
+      try {
+        localStorage.setItem(FONT_KEY, font);
+      } catch (e) {}
+    }
+
+    function updateFontButtonLabel(button, font) {
+      var label = button.querySelector('.font-toggle-label');
+
+      if (!label) {
+        label = document.createElement('span');
+        label.className = 'font-toggle-label';
+        button.textContent = '';
+        button.appendChild(label);
+      }
+
+      label.textContent = 'Aa';
+
+      var nextFont = font === FONT_MANROPE ? 'Inter' : 'Manrope';
+      button.setAttribute('title', 'Switch font to ' + nextFont);
+      button.setAttribute('aria-label', 'Switch font to ' + nextFont);
+    }
+
+    function ensureFontButton() {
+      var button = document.getElementById('font-toggle');
+      if (button) {
+        return button;
+      }
+
+      // In Chirpy 7.x the mode toggle lives inside a `.btn-group` wrapper, so it
+      // is NOT a direct child of `.sidebar-bottom`. Resolve the container from the
+      // mode button itself, and insert relative to its top-level wrapper.
+      var modeBtn = document.getElementById('mode-toggle');
+      var bottom = null;
+
+      if (modeBtn && modeBtn.closest) {
+        bottom = modeBtn.closest('.sidebar-bottom');
+      }
+      if (!bottom) {
+        bottom =
+          document.querySelector('#sidebar .sidebar-bottom') ||
+          document.querySelector('.sidebar-bottom');
+      }
+      if (!bottom) {
+        return null;
+      }
+
+      button = document.createElement('button');
+      button.id = 'font-toggle';
+      button.type = 'button';
+      button.className = 'btn btn-link nav-link';
+
+      // Walk up from the mode button to the child that sits directly under
+      // `.sidebar-bottom`, then insert our button right after it.
+      var anchor = modeBtn;
+      while (anchor && anchor.parentNode !== bottom) {
+        anchor = anchor.parentNode;
+      }
+
+      if (anchor && anchor.nextSibling) {
+        bottom.insertBefore(button, anchor.nextSibling);
+      } else {
+        bottom.appendChild(button);
+      }
+
+      return button;
+    }
+
+    function bindFontToggleHandler(button) {
+      if (button.dataset.fontToggleBound === 'true') {
+        return;
+      }
+
+      button.dataset.fontToggleBound = 'true';
+
+      button.addEventListener(
+        'click',
+        function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          var nextFont = getActiveFont() === FONT_MANROPE ? FONT_INTER : FONT_MANROPE;
+          applyFont(nextFont);
+          updateFontButtonLabel(button, nextFont);
+        },
+        true
+      );
+    }
+
+    // Wrap the mode + font toggles into ONE flex item (a segmented pill) so the
+    // sidebar-bottom row keeps 5 items instead of 6 and no longer wraps.
+    function groupToggles() {
+      if (document.getElementById('toggle-combo')) {
+        return;
+      }
+
+      var modeBtn = document.getElementById('mode-toggle');
+      var fontBtn = document.getElementById('font-toggle');
+      if (!modeBtn || !fontBtn) {
+        return;
+      }
+
+      var bottom =
+        (modeBtn.closest && modeBtn.closest('.sidebar-bottom')) ||
+        document.querySelector('#sidebar .sidebar-bottom') ||
+        document.querySelector('.sidebar-bottom');
+      if (!bottom) {
+        return;
+      }
+
+      // The mode button sits inside a `.btn-group`; find that top-level wrapper.
+      var modeWrap = modeBtn;
+      while (modeWrap && modeWrap.parentNode !== bottom) {
+        modeWrap = modeWrap.parentNode;
+      }
+      if (!modeWrap) {
+        return;
+      }
+
+      var combo = document.createElement('div');
+      combo.id = 'toggle-combo';
+      combo.className = 'toggle-combo';
+      bottom.insertBefore(combo, modeWrap);
+      combo.appendChild(modeWrap);
+      combo.appendChild(fontBtn);
     }
 
     function updateButtonLabel(button, mode) {
@@ -1336,13 +2050,27 @@
       enhanceTagResultCards();
       observeSearchResultCards();
 
+      // Sync both theme attributes to the resolved mode so custom rules
+      // (data-mode) and Chirpy core (data-bs-theme) stay in agreement.
+      applyMode(getActiveMode());
+
+      // Apply saved font before wiring the button, so it works even if the
+      // sidebar button cannot be created for some reason.
+      applyFont(getActiveFont());
+
       var button = ensureToggleButton();
-      if (!button) {
-        return;
+      if (button) {
+        bindToggleHandler(button);
+        updateButtonLabel(button, getActiveMode());
       }
 
-      bindToggleHandler(button);
-      updateButtonLabel(button, getActiveMode());
+      var fontButton = ensureFontButton();
+      if (fontButton) {
+        bindFontToggleHandler(fontButton);
+        updateFontButtonLabel(fontButton, getActiveFont());
+      }
+
+      groupToggles();
     }
 
     if (document.readyState === 'loading') {
