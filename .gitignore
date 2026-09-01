@@ -46,3 +46,4 @@ assets/js/dist
 *.ilg
 *.ind
 *.synctex
+*.tex
