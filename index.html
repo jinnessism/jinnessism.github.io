@@ -63,23 +63,33 @@ show_post_list: false
 
   {% if merged.size > 0 %}
     <ul class="news-timeline">
-      {% for row in merged limit: 5 %}
+      {% for row in merged limit: 3 %}
         {% assign parts = row | split: '~~~' %}
         <li class="news-item">
           <time class="news-date">{{ parts[1] }}</time>
           <span class="news-body">
             {%- assign nlink = parts[2] -%}
-            {%- if nlink and nlink != '' -%}
-              <a href="{{ nlink }}">{{ parts[3] }}</a>
-            {%- else -%}
-              {{ parts[3] }}
-            {%- endif -%}
+            {%- if nlink and nlink != '' -%}<a href="{{ nlink }}">{{ parts[3] }}</a>{%- else -%}{{ parts[3] }}{%- endif -%}
           </span>
         </li>
       {% endfor %}
     </ul>
-    {% if news_posts.size > 0 %}
-      <p class="section-more"><a href="{{ '/posts/' | relative_url }}">See all posts &rarr;</a></p>
+    {% if merged.size > 3 %}
+      <details class="news-more">
+        <summary>more&hellip;</summary>
+        <ul class="news-timeline">
+          {% for row in merged offset: 3 %}
+            {% assign parts = row | split: '~~~' %}
+            <li class="news-item">
+              <time class="news-date">{{ parts[1] }}</time>
+              <span class="news-body">
+                {%- assign nlink = parts[2] -%}
+                {%- if nlink and nlink != '' -%}<a href="{{ nlink }}">{{ parts[3] }}</a>{%- else -%}{{ parts[3] }}{%- endif -%}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      </details>
     {% endif %}
   {% else %}
     <p>No updates yet. Add entries under <code>news:</code> in <code>_data/home.yml</code>.</p>

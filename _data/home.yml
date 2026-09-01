@@ -30,12 +30,8 @@ publication_note: >-
 # line clickable (an internal path like /posts/xxx/ or an external URL).
 # If you delete/empty this list, the News section falls back to recent posts.
 news:
-  - date: "2026.09"
-    text: "Launched my personal website."
   - date: "2026.02"
-    text: "Admitted to the <a href='https://gsds.kaist.ac.kr/'>Graduate School of Data Science (GSDS)</a> at KAIST."
-  - date: "2026.02"
-    text: "Started my M.S. at <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST."
+    text: "Started my M.S. at <a href='https://silab.kaist.ac.kr/'>SILAB</a>, <a href='https://gsds.kaist.ac.kr/'>GSDS</a>, KAIST."
   - date: "2024.01"
     text: "Won <strong>3rd prize</strong> at the LG Electronics Data Science Contest #3."
     # link: "/posts/your-post-slug/"   # optional: link this item to a post/URL
