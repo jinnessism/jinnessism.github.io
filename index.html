@@ -32,34 +32,9 @@ show_post_list: false
       <div class="hero-links">
         <a class="hero-cta hero-cta--primary" href="{{ '/assets/files/cv.pdf' | relative_url }}">CV</a>
         <a class="hero-cta" href="mailto:{{ site.social.email }}">Email</a>
-        <a class="hero-cta" href="https://github.com/{{ site.github.username }}" target="_blank" rel="noopener">GitHub</a>
-        <a class="hero-cta" href="https://www.linkedin.com/in/jinnessism" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
-</section>
-
-<section id="about-me" class="mb-5">
-  <style>
-    #about-me .about-copy p {
-      margin-bottom: 1rem;
-    }
-
-    #about-me .about-copy p:last-child {
-      margin-bottom: 0;
-    }
-
-    #about-me .about-quote {
-      display: inline-block;
-      font-weight: 700;
-      font-style: italic;
-      white-space: nowrap;
-      max-width: 100%;
-      font-size: clamp(0.95rem, 1rem + 0.2vw, 1.1rem);
-    }
-  </style>
-  <h2><span class="sec-emoji">👋</span>About Me</h2>
-  <div class="about-copy">{{ home.about_me | markdownify }}</div>
 </section>
 
 <section id="news" class="mb-5">

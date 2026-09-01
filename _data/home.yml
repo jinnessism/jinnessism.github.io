@@ -6,9 +6,13 @@ hero_image: "/assets/img/hero.jpg"
 name_ko: "박정민"
 hero_role: "M.S. Student &middot; <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST"
 hero_tagline: "Flow Map Alignment &amp; Multi-agentic Systems"
-# Short 1-2 sentence intro shown inside the hero card (a summary of About Me).
-hero_intro: "M.S. student at <a href='https://silab.kaist.ac.kr/'>SILAB</a>, KAIST, working on generative model alignment and multi-agentic systems. I enjoy turning new AI research into things that solve real problems — always open to collaborations and conversations."
+# Short 1-2 sentence intro shown inside the hero card. Keep it complementary to
+# the role + tagline above it (don't repeat the affiliation or research topics).
+hero_intro: "I enjoy turning new AI research into tools that solve real problems, and sharing what I learn along the way. Always open to research collaborations, discussions, or a casual chat."
 
+# NOTE: the About Me section was removed from the home page (the hero card intro
+# replaces it), so `about_me` below is currently UNUSED. Kept here in case you
+# want to restore the section later.
 about_me: |-
   <span class='about-quote'>Optimism is the faith that leads to achievement.</span>
 
