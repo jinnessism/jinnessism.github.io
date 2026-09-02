@@ -1,0 +1,21 @@
+{%- comment -%}
+  Renders one merged news row: "sortkey~~~display-date~~~link~~~text~~~detail".
+  - detail present -> collapsible toggle (short text + expandable detail)
+  - link present   -> whole line links out
+  - otherwise      -> plain text
+{%- endcomment -%}
+{%- assign parts = include.row | split: '~~~' -%}
+<li class="news-item">
+  <time class="news-date">{{ parts[1] }}</time>
+  <span class="news-body">
+    {%- assign nlink = parts[2] -%}
+    {%- assign ndetail = parts[4] -%}
+    {%- if ndetail and ndetail != '' -%}
+      <details class="news-detail"><summary>{{ parts[3] }}</summary><span class="news-detail-body">{{ ndetail }}</span></details>
+    {%- elsif nlink and nlink != '' -%}
+      <a href="{{ nlink }}">{{ parts[3] }}</a>
+    {%- else -%}
+      {{ parts[3] }}
+    {%- endif -%}
+  </span>
+</li>

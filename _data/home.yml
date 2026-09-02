@@ -31,13 +31,18 @@ publication_note: >-
 # If you delete/empty this list, the News section falls back to recent posts.
 news:
   - date: "2026.02"
-    text: "Started my M.S. at <a href='https://silab.kaist.ac.kr/'>SILAB</a>, <a href='https://gsds.kaist.ac.kr/'>GSDS</a>, KAIST."
+    text: "Began my M.S. in <a href='https://gsds.kaist.ac.kr/'>Data Science</a> at KAIST, and joined <a href='https://silab.kaist.ac.kr/'>SILAB</a>, advised by <a href='https://scholar.google.com/citations?user=sH2a0nkAAAAJ&amp;hl=en'>Prof. Jinkyoo Park</a>."
+  # `detail` (optional) shows a collapsible toggle at the end of the line.
   - date: "2026.01"
-    text: "Participated in <strong>LG Aimers #8</strong> &mdash; with an AI hackathon on pruning EXAONE 4.0 for lightweight deployment (until 2026.02)."
+    text: "Participated in <strong>LG Aimers #8</strong> <span class='news-until'>(until 2026.02)</span>"
+    detail: "An AI hackathon on pruning EXAONE 4.0 for lightweight deployment."
   - date: "2025.07"
-    text: "Participated in <strong>LG Aimers #7</strong> &mdash; with an AI hackathon on restaurant demand forecasting (until 2025.08)."
+    text: "Participated in <strong>LG Aimers #7</strong> <span class='news-until'>(until 2025.08)</span>"
+    detail: "An AI hackathon on restaurant demand forecasting."
   - date: "2025.06"
     text: "Research intern at <strong>Big Data Intelligence Lab</strong>, KAIST (Advisor: Jiyoung Whang). <span class='news-until'>(until 2025.08)</span>"
+  - date: "2024.08"
+    text: "Study lead at <strong>Include</strong> (AI club) &mdash; ran Deep Learning, Diffusion, and GNN study groups. <span class='news-until'>(until 2026.01)</span>"
   - date: "2024.01"
     text: "Won <strong>3rd prize</strong> at the LG Electronics Data Science Contest #3."
     # link: "/posts/your-post-slug/"   # optional: link this item to a post/URL

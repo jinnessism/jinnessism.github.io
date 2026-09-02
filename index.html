@@ -48,7 +48,7 @@ show_post_list: false
   {% if home.news %}
     {% for item in home.news %}
       {% assign sd = item.sort_date | default: item.date | replace: '.', '-' %}
-      {% assign row = sd | append: '~~~' | append: item.date | append: '~~~' | append: item.link | append: '~~~' | append: item.text %}
+      {% assign row = sd | append: '~~~' | append: item.date | append: '~~~' | append: item.link | append: '~~~' | append: item.text | append: '~~~' | append: item.detail %}
       {% assign merged = merged | push: row %}
     {% endfor %}
   {% endif %}
@@ -63,31 +63,13 @@ show_post_list: false
 
   {% if merged.size > 0 %}
     <ul class="news-timeline">
-      {% for row in merged limit: 5 %}
-        {% assign parts = row | split: '~~~' %}
-        <li class="news-item">
-          <time class="news-date">{{ parts[1] }}</time>
-          <span class="news-body">
-            {%- assign nlink = parts[2] -%}
-            {%- if nlink and nlink != '' -%}<a href="{{ nlink }}">{{ parts[3] }}</a>{%- else -%}{{ parts[3] }}{%- endif -%}
-          </span>
-        </li>
-      {% endfor %}
+      {% for row in merged limit: 5 %}{% include news-item.html row=row %}{% endfor %}
     </ul>
     {% if merged.size > 5 %}
       <details class="news-more">
         <summary>more&hellip;</summary>
         <ul class="news-timeline">
-          {% for row in merged offset: 5 %}
-            {% assign parts = row | split: '~~~' %}
-            <li class="news-item">
-              <time class="news-date">{{ parts[1] }}</time>
-              <span class="news-body">
-                {%- assign nlink = parts[2] -%}
-                {%- if nlink and nlink != '' -%}<a href="{{ nlink }}">{{ parts[3] }}</a>{%- else -%}{{ parts[3] }}{%- endif -%}
-              </span>
-            </li>
-          {% endfor %}
+          {% for row in merged offset: 5 %}{% include news-item.html row=row %}{% endfor %}
         </ul>
       </details>
     {% endif %}
