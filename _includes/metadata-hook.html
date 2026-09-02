@@ -351,8 +351,9 @@
 
   .archive-board {
     display: grid;
-    gap: 1rem;
+    gap: 0.85rem;
     margin-top: 1.2rem;
+    max-width: 54rem;
   }
 
   .archive-card {
@@ -378,6 +379,7 @@
   .archive-card-title a {
     color: #1f3f8f;
     text-decoration: none;
+    border-bottom: none !important;
     font-weight: 700;
   }
 
@@ -975,6 +977,13 @@
     margin-top: 0;
   }
 
+  /* Secondary "(until ...)" note on ranged news items */
+  .news-until {
+    color: var(--text-muted-color);
+    font-size: 0.88em;
+    white-space: nowrap;
+  }
+
   @media all and (max-width: 576px) {
     ul.news-timeline .news-item {
       flex-direction: column;
@@ -1116,6 +1125,109 @@
     color: #7a4b12;
     background: #fff5e6;
     border-color: #f0d8a8;
+  }
+
+  /* ---- Unified clickable chips (post tags) ---- */
+  /* Remove the link underline WITHOUT killing the pill's own border. Chirpy's
+     `.content a` sets a border-bottom underline that would override the chip's
+     bottom-border colour, so we re-assert the chip border colour with !important. */
+  a.archive-chip {
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .archive-chip-tag {
+    color: #365ca8;
+    background: #f6f9ff;
+    border-color: #d2def7 !important;
+  }
+
+  a.archive-chip-tag:hover,
+  a.archive-chip-tag:focus-visible {
+    color: #1f3f8f;
+    background: #eaf1ff;
+    border-color: #b7c9f1 !important;
+  }
+
+  .archive-chip-primary {
+    color: #fff;
+    background: #1f3f8f;
+    border-color: #1f3f8f !important;
+  }
+
+  a.archive-chip-primary:hover,
+  a.archive-chip-primary:focus-visible {
+    color: #fff;
+    background: #365ca8;
+    border-color: #365ca8 !important;
+  }
+
+  /* ---- Post card date meta (icon + natural date) ---- */
+  .archive-card-meta i {
+    margin-right: 0.35rem;
+    opacity: 0.6;
+    font-size: 0.85em;
+  }
+
+  /* ---- Year group header ---- */
+  .archive-year {
+    font-family: var(--site-font-sans) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--text-muted-color);
+    margin: 0;
+  }
+
+  .archive-year:not(:first-child) {
+    margin-top: 0.6rem;
+  }
+
+  /* --- Typographic consistency: bring the top bar + cards toward the body size --- */
+  #topbar #breadcrumb {
+    font-size: 0.85rem !important;
+  }
+
+  #search-input,
+  #search-input::placeholder {
+    font-size: 0.85rem;
+  }
+
+  .archive-card-title {
+    font-size: 1.05rem;
+  }
+
+  .archive-card-summary {
+    font-size: 0.86rem;
+  }
+
+  .archive-card-meta {
+    font-size: 0.82rem;
+  }
+
+  html[data-mode='dark'] .archive-chip-tag {
+    color: #cfe0ff;
+    background: rgba(58, 87, 160, 0.2);
+    border-color: #3a57a0 !important;
+  }
+
+  html[data-mode='dark'] a.archive-chip-tag:hover,
+  html[data-mode='dark'] a.archive-chip-tag:focus-visible {
+    color: #e8f0ff;
+    background: rgba(44, 72, 142, 0.4);
+    border-color: #7696d3 !important;
+  }
+
+  html[data-mode='dark'] .archive-chip-primary {
+    color: #fff;
+    background: #2c488e;
+    border-color: #2c488e !important;
+  }
+
+  html[data-mode='dark'] a.archive-chip-primary:hover,
+  html[data-mode='dark'] a.archive-chip-primary:focus-visible {
+    background: #365ca8;
+    border-color: #365ca8 !important;
   }
 
   @media all and (max-width: 576px) {

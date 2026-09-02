@@ -54,7 +54,7 @@ show_post_list: false
   {% endif %}
   {% for post in news_posts %}
     {% assign sd = post.date | date: '%Y-%m-%d' %}
-    {% assign disp = post.date | date: '%Y.%m.%d' %}
+    {% assign disp = post.date | date: '%Y.%m' %}
     {% assign purl = post.url | relative_url %}
     {% assign row = sd | append: '~~~' | append: disp | append: '~~~' | append: purl | append: '~~~' | append: post.title %}
     {% assign merged = merged | push: row %}
@@ -63,7 +63,7 @@ show_post_list: false
 
   {% if merged.size > 0 %}
     <ul class="news-timeline">
-      {% for row in merged limit: 3 %}
+      {% for row in merged limit: 5 %}
         {% assign parts = row | split: '~~~' %}
         <li class="news-item">
           <time class="news-date">{{ parts[1] }}</time>
@@ -74,11 +74,11 @@ show_post_list: false
         </li>
       {% endfor %}
     </ul>
-    {% if merged.size > 3 %}
+    {% if merged.size > 5 %}
       <details class="news-more">
         <summary>more&hellip;</summary>
         <ul class="news-timeline">
-          {% for row in merged offset: 3 %}
+          {% for row in merged offset: 5 %}
             {% assign parts = row | split: '~~~' %}
             <li class="news-item">
               <time class="news-date">{{ parts[1] }}</time>
