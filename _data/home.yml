@@ -58,7 +58,7 @@ education:
     # logo: /assets/img/logos/kaist.png   # optional: drop a logo file here to override the monogram
     period: "Feb 2026 - Present"
     details: "Research focus: Flow Map Alignment, Reinforcement Learning, and Multi-agentic Systems."
-  - degree: "B.S. in <a href='https://cs.kaist.ac.kr/'>Computer Science</a>, Double Major in <a href='https://mathsci.kaist.ac.kr/'>Mathematics</a> and <a href='https://ie.kaist.ac.kr/'>Industrial Engineering</a>"
+  - degree: "B.S. in <a href='https://cs.kaist.ac.kr/'>Computer Science</a> with a <a href='https://cs.kaist.ac.kr/content?menu=279'>Certificate in Artificial Intelligence</a>, Double Major in <a href='https://mathsci.kaist.ac.kr/'>Mathematics</a> and <a href='https://ie.kaist.ac.kr/'>Industrial Engineering</a>"
     institution: "KAIST"
     mono: "KAIST"
     period: "Feb 2019 - Feb 2026"

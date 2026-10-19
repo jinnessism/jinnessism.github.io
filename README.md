@@ -1,5 +1,7 @@
 ## Update Log
 
+2026.10.19. (v. 1.1.8) - Add first publication (NPO), hidden placeholder for the second paper, and the B.S. AI certificate.
+
 2026.09.02. (v. 1.1.0) - Feature update: Redesigned home (hero banner, merged news timeline, publication cards), added Education logo layout, fixed dark-mode background and added an Inter/Manrope font toggle, added a LaTeX CV template.
 
 2026.03.27. (v. 1.0.0) - Major update: Add one post, Make template posts unobservable, Upload photos, Align much more things. 
